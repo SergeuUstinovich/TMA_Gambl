@@ -1,6 +1,6 @@
 import { configureStore, ReducersMapObject } from "@reduxjs/toolkit";
 import { StateScheme } from "./StateScheme";
-import { casinoReducer } from "../slice/tokenSlice";
+import { casinoReducer } from "../slice/casinoSlice";
 
 export function createReduxStore(initialState?: StateScheme) {
   const rootReducer: ReducersMapObject<StateScheme> = {

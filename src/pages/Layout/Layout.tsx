@@ -8,7 +8,7 @@ import { allCasino } from "../../api/allCasino";
 import { useTelegram } from "../../providers/telegram/telegram";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { casinoActions } from "../../providers/StoreProvider/slice/tokenSlice";
+import { casinoActions } from "../../providers/StoreProvider/slice/casinoSlice";
 
 function Layout() {
   const {tg_id, userName} = useTelegram()
