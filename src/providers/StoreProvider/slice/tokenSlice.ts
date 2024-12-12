@@ -1,24 +1,18 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { TokenScheme } from '../../../types/TokenType'
+import { CasinoScheme, CasinoType } from '../../../types/CasinoType'
 
-const initialState: TokenScheme = {
-  token: localStorage.getItem('userToken') ?? undefined,
-}
-// localStorage.getItem('userToken') ?? undefined
-export const tokenSlice = createSlice({
-  name: 'token',
+const initialState: CasinoScheme = {}
+
+export const casinoSlice = createSlice({
+  name: 'casino',
   initialState,
   reducers: {
-    initAuthData: (state, action: PayloadAction<string>) => {
-      localStorage.setItem('userToken', action.payload)
-      state.token = action.payload
+    addData: (state, action: PayloadAction<CasinoType>) => {
+      state.casino = action.payload
     },
-    logout: (state) => {
-      state.token = undefined
-      localStorage.removeItem('userToken')
-    },
+    
   },
 })
 
-export const { actions: tokenActions } = tokenSlice
-export const { reducer: tokenReducer } = tokenSlice
+export const { actions: casinoActions } = casinoSlice
+export const { reducer: casinoReducer } = casinoSlice
