@@ -3,6 +3,11 @@ import { InventoryType } from "../../types/InventoryType";
 import { Button } from "../../ui/Button";
 import style from "./ItemsProfile.module.scss";
 
+const styles = {
+  background: '#181c28',
+  color: '#fff',
+};
+
 function InfoItem({ item }: { item: InventoryType }) {
     
 
@@ -10,10 +15,10 @@ function InfoItem({ item }: { item: InventoryType }) {
     try {
       if (item.promo_code) {
         await navigator.clipboard.writeText(item.promo_code);
-        toast.success('Ссылка скопирована в буфер обмена')
+        toast.success('Ссылка скопирована в буфер обмена', { style: styles })
       }
     } catch (err) {
-        toast.error('Ошибка при копировании')
+        toast.error('Ошибка при копировании', { style: styles })
     }
   };
 
