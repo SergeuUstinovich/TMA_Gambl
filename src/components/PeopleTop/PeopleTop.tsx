@@ -18,13 +18,9 @@ function PeopleTop() {
     return result;
   };
 
-  const handleLinkClick = (link: string) => {
-    window.open(link, '_blank');
-  };
   const twoDimensionalArr = casino?.peoples_top
     ? chunkArray(casino.peoples_top, 3)
     : [];
-
   return (
     <div className={style.box}>
       <h2 className={style.title}>People's Top</h2>
@@ -72,9 +68,9 @@ function PeopleTop() {
                       </div>
                     </div>
                   </div>
-                  {/* <a className={style.link} href={item.url} target="_blank"> */}
-                    <Button onClick={() => handleLinkClick(item.url)} className={style.btn}>Play</Button>
-                  {/* </a> */}
+                  <a className={style.link} href={item.url} target="_blank">
+                    <Button className={style.btn}>Play</Button>
+                  </a>
                 </div>
               ))}
             </SwiperSlide>
