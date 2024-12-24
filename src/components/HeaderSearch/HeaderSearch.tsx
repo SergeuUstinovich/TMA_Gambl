@@ -1,18 +1,24 @@
 import { Link } from "react-router-dom";
 import ProfileSvg from "../../assets/svg/ProfileSvg/ProfileSvg";
 import SearchSvg from "../../assets/svg/SearchSvg/SearchSvg";
-import SettingSvg from "../../assets/svg/SettingSvg/SettingSvg";
 import { useTelegram } from "../../providers/telegram/telegram";
 import { Button } from "../../ui/Button";
 import style from "./HeaderSearch.module.scss";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import InputModal from "./InputModal";
 import CloseSearchSvg from "../../assets/svg/CloseSearchSvg/CloseSearchSvg";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "../../api/queryClient";
 import { filterCasino } from "../../api/allCasino";
 import { filterCasinoType } from "../../types/filterCasino";
 import FilterList from "./FilterList";
+import toast from "react-hot-toast";
+import AddHomeSvg from "../../assets/svg/AddHomeSvg/AddHomeSvg";
+import Modal from "../../ui/Modal/Modal";
+import imgPrizeHome from "../../assets/png/prizeHomeScreen.png";
+import { useSelector } from "react-redux";
+import { getCasino } from "../../providers/StoreProvider/selectors/getCasino";
+import { addIcon } from "../../api/userInfo";
 
 function HeaderSearch() {
   const { photo } = useTelegram();
@@ -22,6 +28,66 @@ function HeaderSearch() {
   const [data, setData] = useState<filterCasinoType[]>();
   const [inputValue, setInputValue] = useState("");
   const [filteredData, setFilteredData] = useState(data);
+  const [isBtnHomeScreen, setIsBtnHomeScreen] = useState(false);
+  const [isModalHomeScreen, setIsModalHomeScreen] = useState(false);
+  const [loadinPage, setLoadinPage] = useState(false);
+  const users = useSelector(getCasino);
+
+  useEffect(() => {
+    setLoadinPage(true);
+  }, []);
+
+  const mutateIcon = useMutation({
+    mutationFn: (data:{tg_id: string}) => addIcon(data.tg_id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ["wheelFortyne"]})
+      queryClient.invalidateQueries({queryKey: ["casino"]})
+    }
+  }, queryClient)
+
+  //для мобильки методы только
+  const handleAddScreenHome = () => {
+    tg.HapticFeedback.impactOccurred("medium");
+    tg.checkHomeScreenStatus((status: string) => {
+      if (status === "miss" || status === "unknown") {
+        toast.success("Успешно добавлено");
+        tg.addToHomeScreen();
+        if(!users?.user.set_sign) {
+          mutateIcon.mutate({tg_id})
+        }
+      } else {
+        setIsBtnHomeScreen(true);
+        toast.error("Устройство не поддерживает добавление на главный экран");
+      }
+    });
+  };
+
+  useEffect(() => {
+    tg.checkHomeScreenStatus((status: string) => {
+      if (status === "added" || status === "unsupported") {
+        setIsBtnHomeScreen(true);
+      } else if (status === "miss" || status === "unknown") {
+        setIsBtnHomeScreen(false);
+      }
+    });
+  }, [loadinPage]);
+
+  useEffect(() => {
+    if (!users?.user.set_sign) {
+      tg.checkHomeScreenStatus((status: string) => {
+        if (status === "miss" || status === "unknown") {
+          const timer = setTimeout(() => {
+            setIsModalHomeScreen(true);
+          }, 3000);
+          return () => clearTimeout(timer);
+        }
+      });
+    }
+  }, [loadinPage, users?.user.set_sign]);
+
+  const handleCloseHome = () => {
+    setIsModalHomeScreen(false);
+  };
 
   const handleActive = () => {
     setIsActive(true);
@@ -94,19 +160,26 @@ function HeaderSearch() {
           </div>
           <p className={style.infoInput}>Казино, игры, бонусы</p>
         </div>
-        <div
-          onClick={() => tg.HapticFeedback.impactOccurred("medium")}
-          className={style.boxSetting}
-        >
-          <Link to={"/provile"} className={style.boxAvatar}>
+        <div className={style.boxSetting}>
+          <Link
+            onClick={() => tg.HapticFeedback.impactOccurred("medium")}
+            to={"/provile"}
+            className={style.boxAvatar}
+          >
             {photo ? (
               <img className={style.imgAvatar} src={photo} alt="" />
             ) : (
               <ProfileSvg className={style.svg} />
             )}
           </Link>
-          <Button kind="secondary" className={style.btnSetting}>
-            <SettingSvg className={style.svgSetting} />
+          <Button
+            isDisabled={isBtnHomeScreen}
+            onClick={handleAddScreenHome}
+            kind="secondary"
+            className={style.btnSetting}
+          >
+            {/* <SettingSvg className={style.svgSetting} /> */}
+            <AddHomeSvg className={style.svgSetting} />
           </Button>
         </div>
       </div>
@@ -129,10 +202,31 @@ function HeaderSearch() {
             <CloseSearchSvg />
           </Button>
         </div>
-        {filteredData && (
-          <FilterList filteredData={filteredData}  />
-        )}
+        {filteredData && <FilterList filteredData={filteredData} />}
       </InputModal>
+      <Modal
+        closeBtn
+        isOpen={isModalHomeScreen}
+        onClose={handleCloseHome}
+        isSpecial
+        lazy
+      >
+        <div className={style.boxHome}>
+          <h2 className={style.titleHome}>Привет!</h2>
+          <p className={style.descrHome}>
+            Добавь приложение на «домашний экран» своего смартфона и мы подарим
+            тебе фриспины в «Колесо фортуны» !
+          </p>
+          <img className={style.imgHome} src={imgPrizeHome} alt="" />
+          <p className={style.descrHome}>
+            В котором разыгрываются <br /> Apple Vision, IPhone 16 и автомобиль!
+          </p>
+          <Button onClick={handleAddScreenHome} className={style.btnHome}>
+            <p className={style.descrHomeBtn}>Добавить приложение</p>
+            <AddHomeSvg className={style.svgSetting} />
+          </Button>
+        </div>
+      </Modal>
     </>
   );
 }
