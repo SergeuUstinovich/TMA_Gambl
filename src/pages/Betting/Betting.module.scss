@@ -1,11 +1,9 @@
 .betting {
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-    &.fade {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  width: 100%;
+  height: 100%;
+  transform: translateX(100%);
+  transition: transform 0.5s ease-out;
+  &.fade {
+    transform: translateX(0);
+  }
 }

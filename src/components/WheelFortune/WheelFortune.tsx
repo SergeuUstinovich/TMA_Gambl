@@ -16,13 +16,16 @@ import { useTelegram } from "../../providers/telegram/telegram";
 import Modal from "../../ui/Modal/Modal";
 import toast from "react-hot-toast";
 import WheelWinPrize from "../WheelWinPrize/WheelWinPrize";
+import { HomeScreenModal } from "../HomeScreenModal/HomeScreenModal";
+import { addIcon } from "../../api/userInfo";
+import { getCasino } from "../../providers/StoreProvider/selectors/getCasino";
 
 interface WheelFortuneProps {
   arrWheel: WheelFortyneType[];
 }
 
 function WheelFortune({ arrWheel }: WheelFortuneProps) {
-  const {tg_id, tg} = useTelegram()
+  const { tg_id, tg } = useTelegram();
   const spinsWheel = useSelector(getSpinsWheel);
   const wheelRef = useRef<HTMLDivElement>(null);
   const spinnerRef = useRef<HTMLUListElement>(null);
@@ -35,15 +38,83 @@ function WheelFortune({ arrWheel }: WheelFortuneProps) {
   const [prizeWin, setPrizeWin] = useState<WheelFortyneType>();
   const dispatch = useDispatch();
   const [spinsValue, setSpinsValue] = useState<number>(0);
+  const [isBtnHomeScreen, setIsBtnHomeScreen] = useState(false);
+  const [isModalHomeScreen, setIsModalHomeScreen] = useState(false);
+  const [loadinPage, setLoadinPage] = useState(false);
+  const users = useSelector(getCasino);
 
   const prizeSlice = 360 / arrWheel.length;
   const prizeOffset = Math.floor(180 / arrWheel.length);
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    setLoadinPage(true);
+  }, []);
+
+  const mutateIcon = useMutation(
+    {
+      mutationFn: (data: { tg_id: string }) => addIcon(data.tg_id),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["wheelFortyne"] });
+        queryClient.invalidateQueries({ queryKey: ["casino"] });
+      },
+    },
+    queryClient
+  );
+
+  //для мобильки методы только
+  const handleAddScreenHome = () => {
+    tg.HapticFeedback.impactOccurred("medium");
+    tg.checkHomeScreenStatus((status: string) => {
+      if (status === "miss" || status === "unknown") {
+        toast.success("Успешно добавлено");
+        tg.addToHomeScreen();
+        if (!users?.user.set_sign) {
+          mutateIcon.mutate({ tg_id });
+        }
+      } else {
+        setIsBtnHomeScreen(true);
+        toast.error("Устройство не поддерживает добавление на главный экран");
+      }
+    });
+  };
+
+  useEffect(() => {
+    tg.checkHomeScreenStatus((status: string) => {
+      if (status === "added" || status === "unsupported") {
+        setIsBtnHomeScreen(true);
+      } else if (status === "miss" || status === "unknown") {
+        setIsBtnHomeScreen(false);
+      }
+    });
+  }, [loadinPage]);
+
+  useEffect(() => {
+    if (!users?.user.set_sign) {
+      tg.checkHomeScreenStatus((status: string) => {
+        if (
+          (status === "miss" && spinsValue === 0) ||
+          (status === "unknown" && spinsValue === 0)
+        ) {
+          if (users && users?.user.count_of_session < 2) {
+            const timer = setTimeout(() => {
+              setIsModalHomeScreen(true);
+            }, 2000);
+            return () => clearTimeout(timer);
+          }
+        }
+      });
+    }
+  }, [loadinPage, users?.user.set_sign, users?.user.count_of_session]);
+
+  const handleCloseHome = () => {
+    setIsModalHomeScreen(false);
+  };
+
   const handleCloseModal = () => {
     setIsOpen(false);
     setPrizeWin(undefined);
-  }
+  };
 
   useEffect(() => {
     if (spinsWheel) {
@@ -83,24 +154,24 @@ function WheelFortune({ arrWheel }: WheelFortuneProps) {
         addWheelBonus(data.tg_id, data.id),
       onSuccess: () => {
         setIsOpen(true);
-        toast.success('Ваш приз в сумке')
+        toast.success("Ваш приз в сумке");
       },
       onError: () => {
-        toast.error('Ошибка, ваши вращения восстановлены')
-        dispatch(wheelFortyneActions.plusSpins())
-      }
+        toast.error("Ошибка, ваши вращения восстановлены");
+        dispatch(wheelFortyneActions.plusSpins());
+      },
     },
     queryClient
   );
 
   useEffect(() => {
     if (prizeWin) {
-      mutateWheelBonus.mutate({tg_id, id: prizeWin.id})
+      mutateWheelBonus.mutate({ tg_id, id: prizeWin.id });
     }
   }, [prizeWin]);
 
   const handleClick = () => {
-    tg.HapticFeedback.impactOccurred("medium")
+    tg.HapticFeedback.impactOccurred("medium");
     if (!isSpinning) {
       setIsSpinning(true);
       const { selectedPrize, stopAngle } = selectPrize();
@@ -186,17 +257,16 @@ function WheelFortune({ arrWheel }: WheelFortuneProps) {
           </div>
         </div>
       </div>
-      <Modal
-        closeBtn
-        isOpen={isOpen}
-        onClose={handleCloseModal}
-        isSpecial
-        lazy
-      >
+      <Modal closeBtn isOpen={isOpen} onClose={handleCloseModal} isSpecial lazy>
         {prizeWin && (
           <WheelWinPrize onClose={handleCloseModal} prize={prizeWin} />
         )}
       </Modal>
+      <HomeScreenModal
+        onClick={handleAddScreenHome}
+        isOpen={isModalHomeScreen}
+        onClose={handleCloseHome}
+      />
     </>
   );
 }

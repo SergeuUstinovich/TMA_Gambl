@@ -11,9 +11,10 @@ export const LoaderPage = ({ className = "" }: LoaderPageProps) => {
   
 
   return (
-    <div className={classNames(style.loader, {}, [className])}>
-      <LoaderContentSvg className={style.svg} />
-      <p className={style.descr}>Загрузка...</p>
+    <div className={classNames(style.boxLoader, {}, [className])}>
+      {/* <LoaderContentSvg className={style.svg} /> */}
+      {/* <p className={style.descr}>Загрузка...</p> */}
+      <span className={style.loader}></span>
     </div>
   );
 };

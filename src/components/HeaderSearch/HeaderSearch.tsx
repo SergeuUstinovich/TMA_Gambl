@@ -14,11 +14,10 @@ import { filterCasinoType } from "../../types/filterCasino";
 import FilterList from "./FilterList";
 import toast from "react-hot-toast";
 import AddHomeSvg from "../../assets/svg/AddHomeSvg/AddHomeSvg";
-import Modal from "../../ui/Modal/Modal";
-import imgPrizeHome from "../../assets/png/prizeHomeScreen.png";
 import { useSelector } from "react-redux";
 import { getCasino } from "../../providers/StoreProvider/selectors/getCasino";
 import { addIcon } from "../../api/userInfo";
+import { HomeScreenModal } from "../HomeScreenModal/HomeScreenModal";
 
 function HeaderSearch() {
   const { photo } = useTelegram();
@@ -37,53 +36,58 @@ function HeaderSearch() {
     setLoadinPage(true);
   }, []);
 
-  const mutateIcon = useMutation({
-    mutationFn: (data:{tg_id: string}) => addIcon(data.tg_id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ["wheelFortyne"]})
-      queryClient.invalidateQueries({queryKey: ["casino"]})
-    }
-  }, queryClient)
+  const mutateIcon = useMutation(
+    {
+      mutationFn: (data: { tg_id: string }) => addIcon(data.tg_id),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["wheelFortyne"] });
+        queryClient.invalidateQueries({ queryKey: ["casino"] });
+      },
+    },
+    queryClient
+  );
 
   //для мобильки методы только
   const handleAddScreenHome = () => {
     tg.HapticFeedback.impactOccurred("medium");
-    tg.checkHomeScreenStatus((status: string) => {
-      if (status === "miss" || status === "unknown") {
-        toast.success("Успешно добавлено");
-        tg.addToHomeScreen();
-        if(!users?.user.set_sign) {
-          mutateIcon.mutate({tg_id})
-        }
-      } else {
-        setIsBtnHomeScreen(true);
-        toast.error("Устройство не поддерживает добавление на главный экран");
-      }
-    });
+    // tg.checkHomeScreenStatus((status: string) => {
+    //   if (status === "miss" || status === "unknown") {
+    //     toast.success("Успешно добавлено");
+    //     tg.addToHomeScreen();
+    //     if (!users?.user.set_sign) {
+    //       mutateIcon.mutate({ tg_id });
+    //     }
+    //   } else {
+    //     setIsBtnHomeScreen(true);
+    //     toast.error("Устройство не поддерживает добавление на главный экран");
+    //   }
+    // });
   };
 
-  useEffect(() => {
-    tg.checkHomeScreenStatus((status: string) => {
-      if (status === "added" || status === "unsupported") {
-        setIsBtnHomeScreen(true);
-      } else if (status === "miss" || status === "unknown") {
-        setIsBtnHomeScreen(false);
-      }
-    });
-  }, [loadinPage]);
+  // useEffect(() => {
+  //   tg.checkHomeScreenStatus((status: string) => {
+  //     if (status === "added" || status === "unsupported") {
+  //       setIsBtnHomeScreen(true);
+  //     } else if (status === "miss" || status === "unknown") {
+  //       setIsBtnHomeScreen(false);
+  //     }
+  //   });
+  // }, [loadinPage]);
 
-  useEffect(() => {
-    if (!users?.user.set_sign) {
-      tg.checkHomeScreenStatus((status: string) => {
-        if (status === "miss" || status === "unknown") {
-          const timer = setTimeout(() => {
-            setIsModalHomeScreen(true);
-          }, 3000);
-          return () => clearTimeout(timer);
-        }
-      });
-    }
-  }, [loadinPage, users?.user.set_sign]);
+  // useEffect(() => {
+  //   if (!users?.user.set_sign) {
+  //     tg.checkHomeScreenStatus((status: string) => {
+  //       if (status === "miss" || status === "unknown") {
+  //         if (users && users?.user.count_of_session < 2) {
+  //           const timer = setTimeout(() => {
+  //             setIsModalHomeScreen(true);
+  //           }, 10000);
+  //           return () => clearTimeout(timer);
+  //         }
+  //       }
+  //     });
+  //   }
+  // }, [loadinPage, users?.user.set_sign, users?.user.count_of_session]);
 
   const handleCloseHome = () => {
     setIsModalHomeScreen(false);
@@ -204,29 +208,11 @@ function HeaderSearch() {
         </div>
         {filteredData && <FilterList filteredData={filteredData} />}
       </InputModal>
-      <Modal
-        closeBtn
+      <HomeScreenModal
+        onClick={handleAddScreenHome}
         isOpen={isModalHomeScreen}
         onClose={handleCloseHome}
-        isSpecial
-        lazy
-      >
-        <div className={style.boxHome}>
-          <h2 className={style.titleHome}>Привет!</h2>
-          <p className={style.descrHome}>
-            Добавь приложение на «домашний экран» своего смартфона и мы подарим
-            тебе фриспины в «Колесо фортуны» !
-          </p>
-          <img className={style.imgHome} src={imgPrizeHome} alt="" />
-          <p className={style.descrHome}>
-            В котором разыгрываются <br /> Apple Vision, IPhone 16 и автомобиль!
-          </p>
-          <Button onClick={handleAddScreenHome} className={style.btnHome}>
-            <p className={style.descrHomeBtn}>Добавить приложение</p>
-            <AddHomeSvg className={style.svgSetting} />
-          </Button>
-        </div>
-      </Modal>
+      />
     </>
   );
 }

@@ -13,7 +13,7 @@ export const useTelegram = () => {
   const photo = tg?.initDataUnsafe?.user?.photo_url;
   const tg_id = "12323123";
   const userName = "byngra";
-  const firstName = 'Сергей';
- 
+  const firstName = "Сергей";
+
   return { tg, userName, tg_id, photo, firstName };
 };

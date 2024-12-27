@@ -3,16 +3,24 @@ import "./styles/global/App.scss";
 import { Route, Routes } from "react-router-dom";
 import { useTelegram } from "./providers/telegram/telegram";
 import { LoaderPage } from "./ui/Loader/LoaderPage";
+// import Layout from "./pages/Layout/Layout";
+import Casino from "./pages/Casino/Casino";
+import Betting from "./pages/Betting/Betting";
+import Poker from "./pages/Poker/Poker";
+import Profile from "./pages/Profile/Profile";
+import Wheel from "./pages/Wheel/Wheel";
+import Case from "./pages/Case/Case";
+import Daily from "./pages/Daily/Daily";
 
 
 const Layout = lazy(() => import("./pages/Layout/Layout"));
-const Casino = lazy(() => import("./pages/Casino/Casino"));
-const Betting = lazy(() => import("./pages/Betting/Betting"));
-const Poker = lazy(() => import("./pages/Poker/Poker"));
-const Profile = lazy(() => import("./pages/Profile/Profile"));
-const Wheel = lazy(() => import("./pages/Wheel/Wheel"));
-const Case = lazy(() => import("./pages/Case/Case"));
-const Daily = lazy(() => import("./pages/Daily/Daily"));
+// const Casino = lazy(() => import("./pages/Casino/Casino"));
+// const Betting = lazy(() => import("./pages/Betting/Betting"));
+// const Poker = lazy(() => import("./pages/Poker/Poker"));
+// const Profile = lazy(() => import("./pages/Profile/Profile"));
+// const Wheel = lazy(() => import("./pages/Wheel/Wheel"));
+// const Case = lazy(() => import("./pages/Case/Case"));
+// const Daily = lazy(() => import("./pages/Daily/Daily"));
 
 function App() {
   useTelegram().tg.expand();

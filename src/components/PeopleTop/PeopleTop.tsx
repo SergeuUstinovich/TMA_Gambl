@@ -8,6 +8,7 @@ import { getCasino } from "../../providers/StoreProvider/selectors/getCasino";
 import { CasinoCardType } from "../../types/CasinoType";
 import { useTelegram } from "../../providers/telegram/telegram";
 import LoaderContent from "../../ui/Loader/LoaderContent/LoaderContent";
+import ImageContainer from "../../utils/ImageContainer";
 
 function PeopleTop() {
   const casino = useSelector(getCasino);
@@ -21,7 +22,7 @@ function PeopleTop() {
   };
 
   const swapLink = (link: string) => {
-    tg.HapticFeedback.impactOccurred("medium")
+    tg.HapticFeedback.impactOccurred("medium");
     tg.openLink(link, { try_instant_view: true });
   };
 
@@ -46,10 +47,13 @@ function PeopleTop() {
                 <div key={index} className={style.boxInfoCard}>
                   <div className={style.boxBonus}>
                     <div className={style.boxImg}>
-                      <img
+                      <ImageContainer
                         className={style.imgCard}
                         src={`https://api.zerkalogm.online${item.logo_url}`}
                         alt=""
+                        widthBlur={48}
+                        heightBlur={48}
+                        classNameBlur={style.blur}
                       />
                       <span
                         style={
