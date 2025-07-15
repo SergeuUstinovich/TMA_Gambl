@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import style from "./Layout.module.scss";
 import HeaderSearch from "../../components/HeaderSearch/HeaderSearch";
 import FooterNav from "../../components/FooterNav/FooterNav";
@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { queryClient } from "../../api/queryClient";
 import { allCasino } from "../../api/allCasino";
 import { useTelegram } from "../../providers/telegram/telegram";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { casinoActions } from "../../providers/StoreProvider/slice/casinoSlice";
 import { dailyBonus, freeCase, wheelFortyne } from "../../api/RouletBonus";
@@ -14,24 +14,31 @@ import { freeCaseActions } from "../../providers/StoreProvider/slice/freeCaseSli
 import { Toaster } from "react-hot-toast";
 import { wheelFortyneActions } from "../../providers/StoreProvider/slice/wheelFortyneSlice";
 import { dailyBonusActions } from "../../providers/StoreProvider/slice/dailyBonusSlice";
+import { TabSwitcher } from "../../components/TabSwitcher/TabSwitcher";
+import { tabs } from "./navDataCasino";
 
 function Layout() {
-  const { tg_id, userName } = useTelegram();
+  const { initData } = useTelegram();
   const dispatch = useDispatch();
   const footerRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLDivElement>(null);
+  const [isLogin, setIsLogin] = useState(false);
+  const [activeTab, setActiveTab] = useState("1");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const casinoQuery = useQuery(
     {
       queryKey: ["casino"],
-      queryFn: () => allCasino(tg_id, userName),
-      enabled: !!tg_id,
+      queryFn: () => allCasino(initData),
+      enabled: !!initData,
     },
     queryClient
   );
 
   useEffect(() => {
     if (casinoQuery.data) {
+      setIsLogin(true);
       dispatch(casinoActions.addData(casinoQuery.data));
     }
   }, [casinoQuery.data]);
@@ -39,8 +46,8 @@ function Layout() {
   const freeCaseQuery = useQuery(
     {
       queryKey: ["freeCase"],
-      queryFn: () => freeCase(tg_id),
-      enabled: !!tg_id,
+      queryFn: () => freeCase(),
+      enabled: !!isLogin,
     },
     queryClient
   );
@@ -54,8 +61,8 @@ function Layout() {
   const whellFortyneQuery = useQuery(
     {
       queryKey: ["wheelFortyne"],
-      queryFn: () => wheelFortyne(tg_id),
-      enabled: !!tg_id,
+      queryFn: () => wheelFortyne(),
+      enabled: !!isLogin,
     },
     queryClient
   );
@@ -69,8 +76,8 @@ function Layout() {
   const dailyBonusQuery = useQuery(
     {
       queryKey: ["dailyBonus"],
-      queryFn: () => dailyBonus(tg_id),
-      enabled: !!tg_id,
+      queryFn: () => dailyBonus(),
+      enabled: !!isLogin,
     },
     queryClient
   );
@@ -82,16 +89,15 @@ function Layout() {
   }, [dailyBonusQuery.data]);
 
   useEffect(() => {
-    
     const handleScroll = () => {
-      const main = mainRef.current
+      const main = mainRef.current;
       if (main) {
         const scrollTop = main.scrollTop;
         const scrollHeight = main.scrollHeight;
         const clientHeight = main.clientHeight;
         if (footerRef.current) {
           if (scrollTop === 0) {
-            footerRef.current.classList.remove(style.visible);
+            // footerRef.current.classList.remove(style.visible);
           } else if (scrollTop < scrollHeight - clientHeight - 40) {
             footerRef.current.classList.add(style.visible);
           } else if (scrollTop < scrollHeight - clientHeight) {
@@ -101,23 +107,57 @@ function Layout() {
       }
     };
     const main = mainRef.current;
-    if(main) {
+    if (main) {
       main.addEventListener("scroll", handleScroll);
     }
     return () => {
-      if(main) { 
+      if (main) {
         main.removeEventListener("scroll", handleScroll);
       }
     };
   }, []);
 
+  const handleSwitch = (id: string) => {
+    setActiveTab(id);
+  };
+
+  useEffect(() => {
+    switch (activeTab) {
+      case "1":
+        navigate("/");
+        break;
+      case "2":
+        navigate("/betting");
+        break;
+      case "3":
+        navigate("/poker");
+        break;
+    }
+  }, [activeTab]);
+
+  const visibleRoutes = ["/", "/betting", "/poker"];
+
+  useEffect(() => {
+    if(location.pathname === '/') {
+      setActiveTab('1')
+    }
+  }, [location.pathname])
+
   return (
     <div className={style.app}>
       <Toaster position="top-center" reverseOrder={false} />
       <header className={`${style.header} container`}>
-        <HeaderSearch />
+        <HeaderSearch isLogin={isLogin} />
       </header>
       <main ref={mainRef} className={`${style.main} container`}>
+        {visibleRoutes.includes(location.pathname) && (
+          <TabSwitcher
+            tabs={tabs}
+            activeTab={activeTab}
+            currentArr={handleSwitch}
+          />
+        )}
+
         <Outlet />
       </main>
       <footer ref={footerRef} className={`${style.footer} container`}>

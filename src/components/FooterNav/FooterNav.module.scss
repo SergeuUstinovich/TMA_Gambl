@@ -1,9 +1,9 @@
 .box {
   width: 100%;
-  backdrop-filter: blur(5.552794933319092px);
-  background: rgba(24, 28, 40, 0.9);
-  border-radius: 10px;
-  border: 0.46px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.15);
+  background: rgba(30, 30, 40, 0.85);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   
   .list {
     display: flex;
@@ -22,19 +22,22 @@
         align-items: center;
 
         .img {
-          .svg path {
-            fill: var(--text-input);
+          .svg {
+            width: 28px;
+            height: 28px;
           }
 
-          .svgPoker path {
-            stroke: var(--text-input);
+          .svgSetting {
+            margin-top: 3px;
+            width: 24px;
+            height: 24px;
           }
         }
 
         .descr {
           font-weight: 500;
           font-size: 10px;
-          line-height: 132%;
+          line-height: 152%;
           letter-spacing: 0.01em;
           color: var(--text-input);
         }
@@ -42,21 +45,25 @@
     }
 
     .link.active {
-      background: rgba(201, 192, 0, 0.2);
-      border-radius: 10px;
       .item {
         .img {
+          .svg {
+            .helper {
+              stroke: var(--text-nav-active);
+              fill: transparent;
+            }
+          }
           .svg path {
             fill: var(--text-nav-active);
           }
 
-          .svgPoker path {
+          .svgSetting path {
             stroke: var(--text-nav-active);
           }
         }
 
         .descr {
-          color: var(--text-nav-active);
+          color: var(--white);
         }
       }
     }

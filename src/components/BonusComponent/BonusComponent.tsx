@@ -1,27 +1,21 @@
 import dailyImg from "../../assets/png/dailyBonus.png";
-import wheelImg from "../../assets/png/wheelBonus.png";
 import caseImg from "../../assets/png/freeCase.png";
 import BonusDailySvg from "../../assets/svg/BonusDailySvg/BonusDailySvg";
 import style from "./BonusComponent.module.scss";
-import { useTelegram } from "../../providers/telegram/telegram";
 import { useNavigate } from "react-router-dom";
 
 function BonusComponent() {
-  const { tg } = useTelegram();
   const navigate = useNavigate();
 
   const hanldeFreeCaseOpen = () => {
-    tg.HapticFeedback.impactOccurred("medium");
     navigate("/case");
   };
 
   const hanldeWheelFortuneOpen = () => {
-    tg.HapticFeedback.impactOccurred("medium");
     navigate("/wheel");
   };
 
   const hanldeDailyBonusOpen = () => {
-    tg.HapticFeedback.impactOccurred("medium");
     navigate("/daily");
   };
 
@@ -48,7 +42,6 @@ function BonusComponent() {
             className={`${style.boxBonusMin} ${style.boxBonus}`}
           >
             <span className={style.span}>Достуно!</span>
-            <img src={wheelImg} alt="" />
             <p className={style.descr}>
               Колесо <br /> фортуны
             </p>

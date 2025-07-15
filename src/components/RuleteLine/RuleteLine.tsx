@@ -13,7 +13,6 @@ import WinnerPrize from "./WinnerPrize";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../../api/queryClient";
 import { addFreeCase } from "../../api/RouletBonus";
-import { useTelegram } from "../../providers/telegram/telegram";
 import { useDispatch, useSelector } from "react-redux";
 import { getSpinsCase } from "../../providers/StoreProvider/selectors/getCase";
 import { freeCaseActions } from "../../providers/StoreProvider/slice/freeCaseSlice";
@@ -23,8 +22,9 @@ interface RuleteLineProps {
   arrPrize: FreeCaseType[];
 }
 
+const url = import.meta.env.VITE_API_BASE_URL
+
 function RuleteLine({ arrPrize }: RuleteLineProps) {
-  const {tg_id, tg} = useTelegram()
   const [start, setStart] = useState(false);
   const [winningPrize, setWinningPrize] = useState<FreeCaseType>();
   const [prizeIndex, setPrizeIndex] = useState(0);
@@ -58,13 +58,12 @@ function RuleteLine({ arrPrize }: RuleteLineProps) {
           typeof crypto.randomUUID === "function"
             ? crypto.randomUUID()
             : generateId(),
-        image: `https://api.zerkalogm.online${prize.image}`,
+        image: `${url}${prize.image}`,
       })),
     []
   );
 
   const handleStart = () => {
-    tg.HapticFeedback.impactOccurred("medium")
     if (spinsValue !== 0) {
       const selectedPrize = getRandomPrize(arrPrize);
       const selectedIndex = arrPrize.findIndex(
@@ -94,8 +93,8 @@ function RuleteLine({ arrPrize }: RuleteLineProps) {
 
   const prizeMutate = useMutation(
     {
-      mutationFn: (data: { tg_id: string; id: number }) =>
-        addFreeCase(data.tg_id, data.id),
+      mutationFn: (data: {id: number }) =>
+        addFreeCase(data.id),
       onSuccess: () => {
         setModalPrize(true);
       },
@@ -109,7 +108,7 @@ function RuleteLine({ arrPrize }: RuleteLineProps) {
 
   useEffect(() => {
     if (winningPrize) {
-      prizeMutate.mutate({tg_id, id: winningPrize.id})
+      prizeMutate.mutate({id: winningPrize.id})
     }
   }, [winningPrize]);
 

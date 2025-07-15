@@ -12,33 +12,35 @@ import { queryClient } from "../../api/queryClient";
 import { filterCasino } from "../../api/allCasino";
 import { filterCasinoType } from "../../types/filterCasino";
 import FilterList from "./FilterList";
+import { addIcon } from "../../api/userInfo";
+import logoImg from '../../assets/png/logo.png'
 import toast from "react-hot-toast";
 import AddHomeSvg from "../../assets/svg/AddHomeSvg/AddHomeSvg";
 import { useSelector } from "react-redux";
 import { getCasino } from "../../providers/StoreProvider/selectors/getCasino";
-import { addIcon } from "../../api/userInfo";
+
 import { HomeScreenModal } from "../HomeScreenModal/HomeScreenModal";
 
-function HeaderSearch() {
+function HeaderSearch({isLogin}: {isLogin: boolean}) {
   const { photo } = useTelegram();
-  const { tg, tg_id } = useTelegram();
+  const { tg } = useTelegram();
   const inputRef = useRef<HTMLInputElement>(null);
   const [isActive, setIsActive] = useState(false);
   const [data, setData] = useState<filterCasinoType[]>();
   const [inputValue, setInputValue] = useState("");
   const [filteredData, setFilteredData] = useState(data);
-  const [isBtnHomeScreen, setIsBtnHomeScreen] = useState(false);
+  // const [isBtnHomeScreen, setIsBtnHomeScreen] = useState(false);
   const [isModalHomeScreen, setIsModalHomeScreen] = useState(false);
-  const [loadinPage, setLoadinPage] = useState(false);
-  const users = useSelector(getCasino);
+  // const [loadinPage, setLoadinPage] = useState(false);
+  // const users = useSelector(getCasino);
 
-  useEffect(() => {
-    setLoadinPage(true);
-  }, []);
+  // useEffect(() => {
+  //   setLoadinPage(true);
+  // }, []);
 
   const mutateIcon = useMutation(
     {
-      mutationFn: (data: { tg_id: string }) => addIcon(data.tg_id),
+      mutationFn: () => addIcon(),
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["wheelFortyne"] });
         queryClient.invalidateQueries({ queryKey: ["casino"] });
@@ -48,21 +50,20 @@ function HeaderSearch() {
   );
 
   //для мобильки методы только
-  const handleAddScreenHome = () => {
-    tg.HapticFeedback.impactOccurred("medium");
-    // tg.checkHomeScreenStatus((status: string) => {
-    //   if (status === "miss" || status === "unknown") {
-    //     toast.success("Успешно добавлено");
-    //     tg.addToHomeScreen();
-    //     if (!users?.user.set_sign) {
-    //       mutateIcon.mutate({ tg_id });
-    //     }
-    //   } else {
-    //     setIsBtnHomeScreen(true);
-    //     toast.error("Устройство не поддерживает добавление на главный экран");
-    //   }
-    // });
-  };
+  // const handleAddScreenHome = () => {
+  //   tg.checkHomeScreenStatus((status: string) => {
+  //     if (status === "miss" || status === "unknown") {
+  //       toast.success("Успешно добавлено");
+  //       tg.addToHomeScreen();
+  //       if (!users?.user.set_sign) {
+  //         mutateIcon.mutate();
+  //       }
+  //     } else {
+  //       setIsBtnHomeScreen(true);
+  //       toast.error("Устройство не поддерживает добавление на главный экран");
+  //     }
+  //   });
+  // };
 
   // useEffect(() => {
   //   tg.checkHomeScreenStatus((status: string) => {
@@ -89,18 +90,16 @@ function HeaderSearch() {
   //   }
   // }, [loadinPage, users?.user.set_sign, users?.user.count_of_session]);
 
-  const handleCloseHome = () => {
-    setIsModalHomeScreen(false);
-  };
+  // const handleCloseHome = () => {
+  //   setIsModalHomeScreen(false);
+  // };
 
   const handleActive = () => {
     setIsActive(true);
-    tg.HapticFeedback.impactOccurred("medium");
   };
 
   const handleClose = () => {
     setIsActive(false);
-    tg.HapticFeedback.impactOccurred("medium");
   };
 
   useEffect(() => {
@@ -112,8 +111,8 @@ function HeaderSearch() {
   const queryCasinoFilter = useQuery(
     {
       queryKey: ["filterCasino"],
-      queryFn: () => filterCasino(tg_id),
-      enabled: !!tg_id,
+      queryFn: () => filterCasino(),
+      enabled: !!isLogin
     },
     queryClient
   );
@@ -159,10 +158,10 @@ function HeaderSearch() {
     <>
       <div className={style.box}>
         <div onClick={handleActive} className={style.boxSearch}>
-          <div className={style.boxSvg}>
             <SearchSvg className={style.svgSearch} />
-          </div>
-          <p className={style.infoInput}>Казино, игры, бонусы</p>
+        </div>
+        <div>
+          <img src={logoImg} alt="" />
         </div>
         <div className={style.boxSetting}>
           <Link
@@ -176,15 +175,15 @@ function HeaderSearch() {
               <ProfileSvg className={style.svg} />
             )}
           </Link>
-          <Button
+          {/* <Button
             isDisabled={isBtnHomeScreen}
             onClick={handleAddScreenHome}
             kind="secondary"
             className={style.btnSetting}
           >
-            {/* <SettingSvg className={style.svgSetting} /> */}
+            <SettingSvg className={style.svgSetting} />
             <AddHomeSvg className={style.svgSetting} />
-          </Button>
+          </Button> */}
         </div>
       </div>
       <InputModal isOpen={isActive} lazy onClose={handleClose}>
@@ -208,11 +207,11 @@ function HeaderSearch() {
         </div>
         {filteredData && <FilterList filteredData={filteredData} />}
       </InputModal>
-      <HomeScreenModal
+      {/* <HomeScreenModal
         onClick={handleAddScreenHome}
         isOpen={isModalHomeScreen}
         onClose={handleCloseHome}
-      />
+      /> */}
     </>
   );
 }

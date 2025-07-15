@@ -5,9 +5,9 @@ const api_url =
     ? "/api"
     : import.meta.env.VITE_API_BASE_URL;
 
-export function inventoryUser(tg_id: string) {
+export function inventoryUser() {
   return axios
-    .get(`${api_url}/api/my_profile/${tg_id}/`)
+    .get(`${api_url}/api/my_profile/`)
     .then((response) => {
       const data = response.data.prizes;
       return data;
@@ -15,11 +15,9 @@ export function inventoryUser(tg_id: string) {
     .catch((err) => console.log(err));
 }
 
-export function addIcon(tg_id: string) {
+export function addIcon() {
   return axios
-    .post(`${api_url}/api/set_sign/`, {
-      tg_id,
-    })
+    .post(`${api_url}/api/set_sign/`)
     .then((response) => {
       const data = response.data;
       return data;

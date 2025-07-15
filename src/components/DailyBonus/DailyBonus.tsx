@@ -21,7 +21,7 @@ import "swiper/scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 function DailyBonus() {
-  const { tg_id, tg } = useTelegram();
+  const { tg } = useTelegram();
   const dayBonus = useSelector(getDay);
   const btnActive = useSelector(getTakeDay);
   const [isActive, setIsActive] = useState(false);
@@ -54,7 +54,7 @@ function DailyBonus() {
 
   const mutateDailyBonus = useMutation(
     {
-      mutationFn: (data: { tg_id: string }) => addDailyBonus(data.tg_id),
+      mutationFn: () => addDailyBonus(),
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["dailyBonus"] });
         queryClient.invalidateQueries({ queryKey: ["freeCase"] });
@@ -65,8 +65,7 @@ function DailyBonus() {
   );
 
   const handleBonus = () => {
-    mutateDailyBonus.mutate({ tg_id });
-    tg.HapticFeedback.impactOccurred("medium");
+    mutateDailyBonus.mutate();
   };
 
   return (

@@ -8,7 +8,7 @@
 }
 .contentBg {
   transform: translateY(100%);
-  transition: transform 0.5s ease;
+  transition: transform 0.2s ease;
   &.fade {
       transform: translateY(0);
   }

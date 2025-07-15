@@ -5,9 +5,9 @@ const api_url =
     ? "/api"
     : import.meta.env.VITE_API_BASE_URL;
 
-export function freeCase(tg_id: string) {
+export function freeCase() {
   return axios
-    .get(`${api_url}/api/get_info_free_case/${tg_id}/`)
+    .get(`${api_url}/api/get_info_free_case/`)
     .then((response) => {
       const data = response.data;
       return data;
@@ -15,10 +15,9 @@ export function freeCase(tg_id: string) {
     .catch((err) => console.log(err));
 }
 
-export function addFreeCase(tg_id: string, prize_id: number) {
+export function addFreeCase(prize_id: number) {
   return axios
     .post(`${api_url}/api/add_free_case_bonus/`, {
-      tg_id,
       prize_id,
     })
     .then((response) => {
@@ -28,9 +27,9 @@ export function addFreeCase(tg_id: string, prize_id: number) {
     .catch((err) => {throw new Error(err.info)});
 };
 
-export function wheelFortyne(tg_id: string) {
+export function wheelFortyne() {
   return axios
-    .get(`${api_url}/api/get_info_wheel_of_fortune/${tg_id}/`)
+    .get(`${api_url}/api/get_info_wheel_of_fortune/`)
     .then((response) => {
       const data = response.data;
       return data;
@@ -38,10 +37,9 @@ export function wheelFortyne(tg_id: string) {
     .catch((err) => console.log(err));
 }
 
-export function addWheelBonus(tg_id: string, prize_id: number) {
+export function addWheelBonus(prize_id: number) {
   return axios
     .post(`${api_url}/api/add_wheel_of_fortune_bonus/`, {
-      tg_id,
       prize_id,
     })
     .then((response) => {
@@ -51,9 +49,9 @@ export function addWheelBonus(tg_id: string, prize_id: number) {
     .catch((err) => {throw new Error(err.info)});
 };
 
-export function dailyBonus(tg_id: string) {
+export function dailyBonus() {
   return axios
-    .get(`${api_url}/api/get_info_daly_bonus/${tg_id}/`)
+    .get(`${api_url}/api/get_info_daly_bonus/`)
     .then((response) => {
       const data = response.data;
       return data;
@@ -61,11 +59,9 @@ export function dailyBonus(tg_id: string) {
     .catch((err) => console.log(err));
 }
 
-export function addDailyBonus(tg_id: string) {
+export function addDailyBonus() {
   return axios
-    .post(`${api_url}/api/get_daly_bonus/`, {
-      tg_id,
-    })
+    .post(`${api_url}/api/get_daly_bonus/`)
     .then((response) => {
       const data = response.data;
       return data;

@@ -11,8 +11,6 @@
     background-color: var(--bg-elements);
     border-radius: 10px;
     padding: 3px;
-    height: 46px;
-    width: 88px;
 
     .boxAvatar {
       display: flex;
@@ -20,11 +18,12 @@
       justify-content: center;
       width: 40px;
       height: 40px;
-      margin-right: 12px;
       padding: 0;
 
       .imgAvatar {
-        border-radius: 10px;
+        border-radius: 100px;
+        width: 40px;
+        height: 40px;
       }
 
       .svg {
@@ -49,24 +48,15 @@
 .boxSearch {
   display: flex;
   background-color: var(--bg-elements);
-  padding: 13px 14px;
+  padding: 13px;
   align-items: center;
-  border-radius: 10px;
-  margin-right: 16px;
-  width: 100%;
+  justify-content: center;
+  border-radius: 12px;
   cursor: pointer;
 
-  .boxSvg {
-    display: flex;
-    margin-right: 10px;
-  }
-
-  .infoInput {
-    background-color: var(--bg-elements);
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--text-input);
-    width: 100%;
+  .svgSearch {
+    width: 24px;
+    height: 24px;
   }
 }
 

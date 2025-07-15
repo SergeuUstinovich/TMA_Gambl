@@ -1,0 +1,38 @@
+.box {
+  padding: 34px;
+  .list {
+    list-style: inside;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    .item {
+      font-weight: 900;
+      font-size: 10px;
+      letter-spacing: 0.01em;
+      text-align: justify;
+      color: #555;
+    }
+  }
+
+  .infoBox {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    .imgBox {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 13px;
+    }
+
+    .descr {
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: 0.01em;
+      text-align: justify;
+      color: #555;
+    }
+  }
+}

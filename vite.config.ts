@@ -8,9 +8,16 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://api.zerkalogm.online",
+        target: "https://api.dephub.app",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
       },
     },
   },

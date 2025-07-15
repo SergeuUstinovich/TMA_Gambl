@@ -6,4 +6,44 @@
   &.fade {
     transform: translateX(0);
   }
+
+  .box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    margin: 0px 17px 24px;
+    background-image: url('../../assets/png/wheelBonus.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    .info {
+      padding: 20px;
+
+      .title {
+        font-weight: 900;
+        font-size: 20px;
+        line-height: 120%;
+        margin-bottom: 3px;
+      }
+
+      .text {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 143%;
+        color: #9ca3af;
+      }
+    }
+
+    .btn {
+      background-color: var(--white);
+      margin-right: 17px;
+      border-radius: 9999px;
+      padding: 8px 16px;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 150%;
+    }
+  }
 }

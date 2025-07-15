@@ -1,7 +1,8 @@
-import { FC, HTMLAttributes } from "react";
+import { FC, HTMLAttributes, MouseEvent } from "react";
 import style from "./Button.module.scss";
 import { LoaderButton } from "../Loader/LoaderButton";
 import { classNames } from "../../utils/classNames";
+import { useTelegram } from "../../providers/telegram/telegram";
 
 interface IButtonProps extends HTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
@@ -15,20 +16,31 @@ export const Button: FC<IButtonProps> = ({
   isLoading,
   isDisabled = isLoading,
   children,
-  className = '',
+  className = "",
   kind = "primary",
   type,
+  onClick,
   ...props
 }) => {
+  const { tg } = useTelegram();
+
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    tg.HapticFeedback.impactOccurred("medium");
+
+    if (onClick) {
+      onClick(event);
+    }
+  };
   return (
     <button
       disabled={isDisabled}
       type={type}
       className={classNames(style.btn, {}, [className])}
       data-kind={kind}
+      onClick={handleClick}
       {...props}
     >
-      {isLoading ? <LoaderButton />  : children}
+      {isLoading ? <LoaderButton /> : children}
     </button>
   );
 };

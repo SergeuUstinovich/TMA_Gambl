@@ -6,6 +6,7 @@ import { getCasino } from "../../providers/StoreProvider/selectors/getCasino";
 import TopCasino from "../../components/TopCasino/TopCasino";
 import OffersWeek from "../../components/OffersWeek/OffersWeek";
 import { useEffect, useState } from "react";
+import { InfoTMA } from "../../components/InfoTMA";
 
 function Betting() {
   const casino = useSelector(getCasino);
@@ -17,8 +18,9 @@ function Betting() {
     <div className={`${style.betting} ${isLoaded ? style.fade : ""}`}>
       <Banner />
       <TopCasino title={"Букмекер"} arr={casino ? casino.top_10_casino : []} />
-      <BonusComponent />
+      {/* <BonusComponent /> */}
       <OffersWeek />
+      <InfoTMA />
     </div>
   );
 }

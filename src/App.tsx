@@ -1,6 +1,6 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import "./styles/global/App.scss";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useTelegram } from "./providers/telegram/telegram";
 import { LoaderPage } from "./ui/Loader/LoaderPage";
 // import Layout from "./pages/Layout/Layout";
@@ -26,6 +26,19 @@ function App() {
   useTelegram().tg.expand();
   useTelegram().tg.disableVerticalSwipes();
   useTelegram().tg.setHeaderColor("#000", "#fff");
+  const {tg} = useTelegram()
+  const location = useLocation()
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(location.pathname === '/') {
+      tg.BackButton.hide()
+    } else {
+      tg.BackButton.show()
+      tg.BackButton.onClick(() => {
+        navigate(-1)
+      })
+    }
+  }, [location.pathname])
   return (
     <>
       <Suspense fallback={<LoaderPage />}>
@@ -34,6 +47,8 @@ function App() {
             <Route index element={<Casino />} />
             <Route path={'betting'} element={<Betting />} />
             <Route path={'poker'} element={<Poker />} />
+            <Route path={'quest'} element={<Betting />} />
+            <Route path={'setting'} element={<Poker />} />
             <Route path={'provile'} element={<Profile />} />
             <Route path={'wheel'} element={<Wheel />} />
             <Route path={'case'} element={<Case />} />

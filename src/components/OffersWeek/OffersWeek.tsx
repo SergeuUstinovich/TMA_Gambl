@@ -10,6 +10,8 @@ import { getCasino } from "../../providers/StoreProvider/selectors/getCasino";
 import { useTelegram } from "../../providers/telegram/telegram";
 import LoaderContent from "../../ui/Loader/LoaderContent/LoaderContent";
 
+const url = import.meta.env.VITE_API_BASE_URL
+
 function OffersWeek() {
   const casino = useSelector(getCasino);
   const { tg } = useTelegram();
@@ -19,7 +21,7 @@ function OffersWeek() {
   };
   return (
     <div className={style.box}>
-      <h2 className={style.title}>Предложения недели</h2>
+      <h2 className={style.title}>🕒 Лучшее за неделю</h2>
       {!casino?.offers_of_week ? (
         <LoaderContent />
       ) : (
@@ -34,14 +36,14 @@ function OffersWeek() {
               <div onClick={() => swapLink(item.url)} className={style.boxSlide}>
                 <img
                   className={style.img}
-                  src={`https://api.zerkalogm.online${item.banner_url}`}
+                  src={`${url}${item.banner_url}`}
                   alt=""
                 />
                 <div className={style.boxInfoCard}>
                   <div className={style.boxBonus}>
                     <img
                       className={style.imgCard}
-                      src={`https://api.zerkalogm.online${item.logo_url}`}
+                      src={`${url}${item.logo_url}`}
                       alt=""
                     />
                     <div className={style.boxName}>

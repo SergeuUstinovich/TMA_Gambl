@@ -6,6 +6,8 @@ interface FilterListProps {
   filteredData: filterCasinoType[];
 }
 
+const url = import.meta.env.VITE_API_BASE_URL
+
 function FilterList({ filteredData }: FilterListProps) {
   const { tg } = useTelegram();
   const handleLink = (link: string) => {
@@ -26,7 +28,7 @@ function FilterList({ filteredData }: FilterListProps) {
               >
                 <img
                   className={style.img}
-                  src={`https://api.zerkalogm.online/${casino.logo_url}`}
+                  src={`${url}${casino.logo_url}`}
                   alt=""
                 />
                 <p className={style.descr}>{casino.name}</p>

@@ -16,6 +16,8 @@ interface TopCasinoProps {
   arr: CasinoCardType[];
 }
 
+const url = import.meta.env.VITE_API_BASE_URL
+
 function TopCasino({ title, arr }: TopCasinoProps) {
   const { tg } = useTelegram();
   const swapLink = (link: string) => {
@@ -54,7 +56,7 @@ function TopCasino({ title, arr }: TopCasinoProps) {
                 </div>
                 <img
                   className={style.imgName}
-                  src={`https://api.zerkalogm.online${item.logo_url}`}
+                  src={`${url}${item.logo_url}`}
                   alt=""
                 />
                 <div className={style.boxName}>

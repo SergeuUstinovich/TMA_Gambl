@@ -1,0 +1,67 @@
+.tabContainer {
+  position: relative;
+  width: 100%;
+  padding: 0 15px;
+  margin-bottom: 24px;
+}
+
+.tabButtons {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--bg-elements);
+  padding: 6px;
+  border-radius: 30px;
+}
+
+.tabButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--gray);
+
+  flex: 1;
+  padding: 6px;
+  background: none;
+  position: relative;
+  z-index: 1;
+
+  &.active {
+    color: var(--white);
+
+    .svg path {
+      stroke: var(--white);
+      fill: var(--white);
+    }
+
+    .casinoSvg path {
+      stroke: var(--white);
+      fill: var(--white);
+    }
+
+    .casinoSvg {
+      .hepler {
+        fill: transparent;
+      }
+    }
+
+    .svg {
+      .hepler {
+        fill: transparent;
+      }
+    }
+  }
+}
+.tabIndicator {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  height: 90%;
+  background: linear-gradient(167deg, #0080ff 0%, #0062ff 100%);
+  transition: all 0.4s ease;
+  border: 1px solid rgba(31, 38, 51, 0.1);
+  border-radius: 100px;
+}

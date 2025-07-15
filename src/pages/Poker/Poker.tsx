@@ -5,6 +5,7 @@ import style from "./Poker.module.scss";
 import { getCasino } from "../../providers/StoreProvider/selectors/getCasino";
 import BonusComponent from "../../components/BonusComponent/BonusComponent";
 import { useEffect, useState } from "react";
+import { InfoTMA } from "../../components/InfoTMA";
 
 function Poker() {
   const casino = useSelector(getCasino);
@@ -19,7 +20,7 @@ function Poker() {
         title={"ТОП-10 Покерных-комнат"}
         arr={casino ? casino.top_10_casino : []}
       />
-      <BonusComponent />
+      {/* <BonusComponent /> */}
       <TopCasino
         title={"Эксклюзивный бонус"}
         arr={casino ? casino.top_10_casino : []}
@@ -28,6 +29,7 @@ function Poker() {
         title={"Крипто казино"}
         arr={casino ? casino.top_10_casino : []}
       />
+      <InfoTMA />
     </div>
   );
 }

@@ -10,12 +10,13 @@ interface WinnerPrizeProps {
   clearPrize: () => void
 }
 
+const url = import.meta.env.VITE_API_BASE_URL
+
 function WinnerPrize({ onClose, prize, clearPrize }: WinnerPrizeProps) {
   const {tg} = useTelegram()
   const handleClose = () => {
     onClose();
     clearPrize();
-    tg.HapticFeedback.impactOccurred("medium")
   };
 
   return (
@@ -27,7 +28,7 @@ function WinnerPrize({ onClose, prize, clearPrize }: WinnerPrizeProps) {
       {prize && (
         <img
           className={style.imgWinner}
-          src={`https://api.zerkalogm.online${prize.image_without_background_url}`}
+          src={`${url}${prize.image_without_background_url}`}
           alt=""
         />
       )}

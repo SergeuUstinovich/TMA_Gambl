@@ -9,11 +9,11 @@ interface WheelWinPrizeProps {
   onClose: () => void;
 }
 
+const url = import.meta.env.VITE_API_BASE_URL
+
 function WheelWinPrize({ prize, onClose }: WheelWinPrizeProps) {
-  const {tg} = useTelegram()
   const handleClose = () => {
     onClose()
-    tg.HapticFeedback.impactOccurred("medium")
   }
   
   return (
@@ -25,7 +25,7 @@ function WheelWinPrize({ prize, onClose }: WheelWinPrizeProps) {
       {prize && (
         <img
           className={style.imgWinner}
-          src={`https://api.zerkalogm.online${prize.image_without_background_url}`}
+          src={`${url}${prize.image_without_background_url}`}
           alt=""
         />
       )}

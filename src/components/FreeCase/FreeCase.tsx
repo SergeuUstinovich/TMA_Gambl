@@ -7,6 +7,8 @@ interface FreeCaseProps {
   arrCase: FreeCaseType[];
 }
 
+const url = import.meta.env.VITE_API_BASE_URL
+
 function FreeCase({ arrCase }: FreeCaseProps) {
   return (
     <div className={style.box}>
@@ -25,7 +27,7 @@ function FreeCase({ arrCase }: FreeCaseProps) {
               <li key={item.id} className={style.item}>
                 <img
                   className={style.img}
-                  src={`https://api.zerkalogm.online${item.image}`}
+                  src={`${url}${item.image}`}
                   alt=""
                 />
                 <p className={style.descr}>{item.text}</p>

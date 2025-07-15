@@ -10,6 +10,8 @@ import { useTelegram } from "../../providers/telegram/telegram";
 import LoaderContent from "../../ui/Loader/LoaderContent/LoaderContent";
 import ImageContainer from "../../utils/ImageContainer";
 
+const url = import.meta.env.VITE_API_BASE_URL
+
 function PeopleTop() {
   const casino = useSelector(getCasino);
   const { tg } = useTelegram();
@@ -31,7 +33,7 @@ function PeopleTop() {
     : [];
   return (
     <div className={style.box}>
-      <h2 className={style.title}>Популярное</h2>
+      <h2 className={style.title}>🔥 Популярное</h2>
       {twoDimensionalArr.length === 0 ? (
         <LoaderContent />
       ) : (
@@ -49,7 +51,7 @@ function PeopleTop() {
                     <div className={style.boxImg}>
                       <ImageContainer
                         className={style.imgCard}
-                        src={`https://api.zerkalogm.online${item.logo_url}`}
+                        src={`${url}${item.logo_url}`}
                         alt=""
                         widthBlur={48}
                         heightBlur={48}

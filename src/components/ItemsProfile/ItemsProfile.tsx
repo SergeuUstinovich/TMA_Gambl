@@ -14,15 +14,17 @@ import LoaderContent from "../../ui/Loader/LoaderContent/LoaderContent";
 const ITEMS_COUNT = 12;
 const MIN_EMPTY_SLOTS = 3;
 
+const url = import.meta.env.VITE_API_BASE_URL
+
 function ItemsProfile() {
-  const { tg_id, tg } = useTelegram();
+  const { tg } = useTelegram();
   const [data, setData] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [infoItems, setInfoItems] = useState<InventoryType>();
 
   const inventoryQuery = useQuery(
     {
-      queryFn: () => inventoryUser(tg_id),
+      queryFn: () => inventoryUser(),
       queryKey: ["inventory"],
     },
     queryClient
@@ -66,7 +68,7 @@ function ItemsProfile() {
               >
                 {item.image && (
                   <img
-                    src={`https://api.zerkalogm.online/${item.image}`}
+                    src={`${url}${item.image}`}
                     alt=""
                   />
                 )}
