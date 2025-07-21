@@ -97,7 +97,7 @@ function Layout() {
         const clientHeight = main.clientHeight;
         if (footerRef.current) {
           if (scrollTop === 0) {
-            // footerRef.current.classList.remove(style.visible);
+            // footerRef.current.classList.add(style.visible);
           } else if (scrollTop < scrollHeight - clientHeight - 40) {
             footerRef.current.classList.add(style.visible);
           } else if (scrollTop < scrollHeight - clientHeight) {
@@ -160,7 +160,7 @@ function Layout() {
 
         <Outlet />
       </main>
-      <footer ref={footerRef} className={`${style.footer} container`}>
+      <footer ref={footerRef} className={`${style.footer} container ${style.visible}`}>
         <FooterNav />
       </footer>
     </div>

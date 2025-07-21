@@ -1,22 +1,24 @@
-.contentBg {
-    background: linear-gradient(
-      180deg,
-      rgba(121, 62, 198, 0.2) 0%,
-      rgba(73, 39, 119, 0.5) 75.93%,
-      rgba(9, 9, 12, 0.2) 100%
-    ) !important;
-    transform: translateY(100%);
-    transition:  transform 0.2s ease-out;
-    &.fade {
-        transform: translateY(0);
-    }
-  }
+.title {
+  padding: 16px;
+  text-align: center;
+}
 
-  .closeCross {
+.closeCross {
     position: absolute;
     z-index: 10;
     right: 5%;
-    top: 23px;
+    top: 16px;
+    background-color: var(--white) !important;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    padding: 6px;
+
+    .svg {
+      position: relative;
+      z-index: 11;
+      width: 24px;
+      height: 24px;
+    }
   }

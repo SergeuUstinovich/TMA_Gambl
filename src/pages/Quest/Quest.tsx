@@ -4,6 +4,7 @@ import { Button } from "../../ui/Button";
 import imgDaily from "../../assets/png/dailyBonusNav.png";
 import imgFree from '../../assets/png/freeSpins.png'
 import ArrowSvg from "../../assets/svg/ArrowSvg/ArrowSvg";
+import LockSvg from "../../assets/svg/LockSvg/LockSvg";
 
 function Quest() {
   const navigate = useNavigate();
@@ -40,7 +41,9 @@ function Quest() {
       </Button>
       <div className={style.questBox}>
         <h3 className={style.title}>⭐ Задания</h3>
-        <div className={style.dot}>СКОРО!</div>
+        <div className={style.dot}>
+          <LockSvg className={style.dotSvg} />
+        </div>
       </div>
     </div>
   );

@@ -221,7 +221,7 @@ function WheelFortune({ arrWheel }: WheelFortuneProps) {
         >
           Крутить колесо
         </Button>
-        <p className={style.descrSpins}>Вращений: {spinsValue}</p>
+        <p className={style.descrSpins}>Доступно вращений: {spinsValue}</p>
       </div>
       <div className={style.box}>
         <div className={style.deal_wheel} ref={wheelRef}>
@@ -245,7 +245,7 @@ function WheelFortune({ arrWheel }: WheelFortuneProps) {
                       alt=""
                     />
                     <p className={style.descr}>{prize.text}</p>
-                    <p className={style.descrInfo}>{prize.description}</p>
+                    {/* <p className={style.descrInfo}>{prize.description}</p> */}
                   </div>
                 </li>
               );

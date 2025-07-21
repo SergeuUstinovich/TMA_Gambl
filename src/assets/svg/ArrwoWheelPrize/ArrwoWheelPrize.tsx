@@ -4,16 +4,29 @@ function ArrwoWheelPrize({ className }: SvgProps) {
   return (
     <svg
       className={className}
-      width="32"
-      height="22"
-      viewBox="0 0 32 22"
+      width="28"
+      height="26"
+      viewBox="0 0 28 26"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M13.0795 20.142C14.3773 21.8745 17.6219 21.8745 18.9197 20.142L31.0868 3.89959C32.3846 2.16706 30.7624 0.00140762 28.1667 0.00140762H3.83247C1.23682 0.00140762 -0.385457 2.16706 0.912369 3.89959L13.0795 20.142Z"
-        fill="white"
+        d="M19.1952 23C16.8858 27 11.1123 27 8.80287 23L1.00864 9.5C-1.30075 5.5 1.58599 0.5 6.2048 0.5H21.7933C26.4121 0.5 29.2988 5.5 26.9894 9.5L19.1952 23Z"
+        fill="url(#paint0_linear_356_4215)"
       />
+      <defs>
+        <linearGradient
+          id="paint0_linear_356_4215"
+          x1="15.8094"
+          y1="8.10345"
+          x2="12.1887"
+          y2="8.10345"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#F4FFFF" />
+          <stop offset="1" stopColor="#B5BFBF" />
+        </linearGradient>
+      </defs>
     </svg>
   );
 }

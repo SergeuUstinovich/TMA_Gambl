@@ -3,17 +3,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 
   .btn {
-    padding: 13px 27px;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--white);
+    line-height: 128%;
+    background-color: var(--btn-bg);
+    border-radius: 100px;
+    padding: 17px 8px;
+    max-width: 271px;
+    margin: 0 auto;
+    width: 100%;
     margin-bottom: 7px;
   }
 
   .descrSpins {
     font-weight: 400;
-    font-size: 10px;
-    color: var(--text-top);
+    font-size: 14px;
+    line-height: 143%;
+    color: var(--text-input);
   }
 }
 
@@ -22,7 +32,7 @@
   place-items: center;
   overflow: hidden;
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 85px;
 }
 
 .deal_wheel {
@@ -78,7 +88,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0 calc(var(--size) / 7) 0 calc(var(--size) / 30);
+  padding: 0 calc(var(--size) / 8) 0 calc(var(--size) / 30);
   /* устанавливаем размеры */
   width: 50%;
   height: 50%;
@@ -88,13 +98,38 @@
   transform: rotate(var(--rotate));
   /* запрещаем пользователю выделять мышкой текст на секторах */
   user-select: none;
+
+  .boxPrize {
+    position: absolute;
+    transform: rotate(270deg);
+    padding-top: 60px;
+    padding-left: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+
+    .img {
+      width: 60px;
+      height: 46px;
+      margin-bottom: 7px;
+    }
+
+    .descr {
+      text-align: center;
+      max-width: 40px;
+      color: var(--text-input);
+      font-weight: 400;
+      font-size: 8px;
+    }
+  }
 }
 
 .pointer {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: -5px;
   z-index: 20;
 
   .topArrow {
@@ -108,41 +143,7 @@
 }
 
 .svg {
-  transform: rotate(293deg);
+  transform: rotate(220deg);
   width: 90%;
   height: 90%;
-}
-
-.boxPrize {
-  position: absolute;
-  width: 90px;
-  height: 56px;
-  transform: rotate(273deg) translate(-1%, 1%);
-  left: 6%;
-  top: 26%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  .img {
-    width: 60px;
-    height: 46px;
-    margin-bottom: 7px;
-  }
-
-  .descr {
-    text-align: center;
-    max-width: 40px;
-    color: white;
-    font-weight: 600;
-    font-size: 8px;
-    margin-bottom: 2px;
-  }
-
-  .descrInfo {
-    font-weight: 400;
-    font-size: 8px;
-    color: var(--text-top);
-  }
 }

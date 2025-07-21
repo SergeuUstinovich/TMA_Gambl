@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import style from "./RuleteLine.module.scss";
 import { Button } from "../../ui/Button";
 import { FreeCaseType } from "../../types/FreeCase";
-import { useTelegram } from "../../providers/telegram/telegram";
 
 interface WinnerPrizeProps {
   onClose: () => void;
@@ -13,7 +12,6 @@ interface WinnerPrizeProps {
 const url = import.meta.env.VITE_API_BASE_URL
 
 function WinnerPrize({ onClose, prize, clearPrize }: WinnerPrizeProps) {
-  const {tg} = useTelegram()
   const handleClose = () => {
     onClose();
     clearPrize();

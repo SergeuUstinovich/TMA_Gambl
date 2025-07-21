@@ -2,9 +2,20 @@
     position: absolute;
     z-index: 10;
     right: 5%;
-    top: 23px;
+    top: 16px;
+    background-color: var(--white) !important;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    padding: 6px;
+
+    .svg {
+      position: relative;
+      z-index: 11;
+      width: 24px;
+      height: 24px;
+    }
   }
 
   .contentBg {

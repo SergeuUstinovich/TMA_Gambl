@@ -24,4 +24,12 @@ export const dataSetting = [
     isModal: true,
     isActive: false,
   },
+  {
+    id: 2,
+    title: "Поддержка",
+    descr: "Свяжитесь с нами",
+    text: "",
+    isModal: true,
+    isActive: false,
+  },
 ];

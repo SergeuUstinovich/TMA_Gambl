@@ -1,11 +1,6 @@
 import style from "./DailyBonus.module.scss";
-import imgBg from "../../assets/png/dailyBonus.png";
-import LockSvg from "../../assets/svg/LockSvg/LockSvg";
 import { data } from "./data";
-import img from "../../assets/png/boxBonusSpins.png";
-import imgBgPrize from "../../assets/png/bgDaily.png";
 import ComplitedDaySvg from "../../assets/svg/ComplitedDaySvg/ComplitedDaySvg";
-import imgBgComplit from "../../assets/png/bgDailyComplit.png";
 import { useEffect, useState } from "react";
 import { Button } from "../../ui/Button";
 import { useSelector } from "react-redux";
@@ -70,16 +65,11 @@ function DailyBonus() {
 
   return (
     <div className={style.box}>
-      <div className={style.boxTitle}>
-        <img className={style.imgTitle} src={imgBg} alt="" />
-        <h2 className={style.title}>
-          Ежедневный <br /> бонус
-        </h2>
-      </div>
+      <h2 className={style.title}>🗓️ Ежедневный бонус</h2>
       <Swiper
         onSlideChange={() => tg.HapticFeedback.impactOccurred("medium")}
         spaceBetween={7}
-        slidesPerView={3.5}
+        slidesPerView={3.2}
         className={style.list}
       >
         {data.map((item) => (
@@ -88,61 +78,40 @@ function DailyBonus() {
             className={style.item}
             key={item.id}
           >
-            {currentDay <= item.day ? (
-              <img className={style.imgBg} src={imgBgPrize} alt="" />
-            ) : (
-              <img className={style.imgBg} src={imgBgComplit} alt="" />
-            )}
             <div
               className={style.boxInfo}
               style={
-                currentDay <= item.day
-                  ? {
-                      top: "45%",
-                    }
+                currentDay > item.day
+                  ? { border: "1px solid #34c759" }
+                  : currentDay === item.day
+                  ? { border: "1px solid #0080ff" }
                   : {}
               }
             >
+              {currentDay <= item.day ? (
+                <span className={style.countInfo}>x{item.count}</span>
+              ) : (
+                <ComplitedDaySvg className={style.svg} />
+              )}
+
               <h2 className={style.titleInfo}>{item.day}</h2>
               <p className={style.descrInfo}>День</p>
 
-              <div className={style.boxImg}>
-                {currentDay <= item.day ? (
-                  <>
-                    <img className={style.imgPrize} src={img} alt="" />
-                    <span className={style.countInfo}>x{item.count}</span>
-                  </>
-                ) : (
-                  <ComplitedDaySvg className={style.svg} />
-                )}
-              </div>
+              <div className={style.boxImg}></div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-
       {dayInfo && (
-        <div className={style.infoDay}>
-          <div className={style.boxTitle}>
-            <h1 className={style.titleNumber}>{dayInfo.day}</h1>
-            <h2 className={style.titleDay}>День</h2>
-          </div>
-          <div className={style.boxImgDay}>
-            <img className={style.imgDay} src={img} alt="" />
-            <span className={style.spanDay}>x{dayInfo.count}</span>
-          </div>
-          <Button
-            onClick={handleBonus}
-            className={style.btn}
-            isLoading={mutateDailyBonus.isPending}
-            isDisabled={
-              currentDay !== dayInfo.day ||
-              !isActive
-            }
-          >
-            Забрать награду
-          </Button>
-        </div>
+        <Button
+          kind="secondary"
+          onClick={handleBonus}
+          className={style.btn}
+          isLoading={mutateDailyBonus.isPending}
+          isDisabled={currentDay !== dayInfo.day || !isActive}
+        >
+          Забрать награду
+        </Button>
       )}
     </div>
   );
