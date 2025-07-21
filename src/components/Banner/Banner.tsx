@@ -16,7 +16,7 @@ function Banner() {
           Бонус на депозит <br /> до 500%
         </h1>
         <p className={style.descr}>
-          Получайте до 500% от депозита <br /> на бонусные счета казино и ставок
+          Лучшее предложение на рынке
         </p>
         <div className={style.boxBtn}>
           <Button

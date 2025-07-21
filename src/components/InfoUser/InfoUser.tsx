@@ -12,8 +12,7 @@ function InfoUser() {
         <ProfileSvg className={style.img} />
       )}
       <div className={style.boxName}>
-        <h2 className={style.title}>{firstName}</h2>
-        <p className={style.descr}>@{userName}</p>
+        <p className={style.title}>@{userName ? userName : firstName}</p>
       </div>
     </div>
   );

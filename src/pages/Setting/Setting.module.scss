@@ -1,0 +1,60 @@
+.box {
+  padding: 0 15px;
+
+  .boxSetting {
+    .title {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 140%;
+      margin-bottom: 16px;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      .item {
+        background-color: var(--bg-elements);
+        border-radius: 16px;
+        padding: 20px;
+
+        .btn {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          .infoBox {
+            text-align: start;
+            .titleInfo {
+              font-weight: 700;
+              font-size: 16px;
+              line-height: 150%;
+              color: var(--white);
+            }
+
+            .descrInfo {
+              font-weight: 400;
+              font-size: 12px;
+              line-height: 133%;
+              color: var(--text-input);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.modalBox {
+  .modalTitle {
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .modalText {
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--text-input);
+  }
+}

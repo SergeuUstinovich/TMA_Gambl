@@ -157,7 +157,7 @@ function HeaderSearch({isLogin}: {isLogin: boolean}) {
   return (
     <>
       <div className={style.box}>
-        <div onClick={handleActive} className={style.boxSearch}>
+        <div onClick={handleActive} className={style.boxActiveSearch}>
             <SearchSvg className={style.svgSearch} />
         </div>
         <div>
@@ -188,7 +188,7 @@ function HeaderSearch({isLogin}: {isLogin: boolean}) {
       </div>
       <InputModal isOpen={isActive} lazy onClose={handleClose}>
         <div className={style.searchBlock}>
-          <div className={style.boxSearch}>
+          <div className={`${style.boxSearch} ${isActive ? style.activeInput : ''}`}>
             <div className={style.boxSvg}>
               <SearchSvg className={style.svgSearch} />
             </div>

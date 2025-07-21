@@ -81,12 +81,12 @@
     padding: 0;
 
     .content {
-      padding: 1px;
+      padding: 20px;
       border-radius: 12px;
-      background: var(--bg-color);
+      background: var(--bg-elements);
       transition: 0.3s transform;
       transform: scale(0.5);
-      max-width: 100%;
+      max-width: 90%;
       max-height: max-content;
       height: auto;
     }

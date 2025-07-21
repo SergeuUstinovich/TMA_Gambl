@@ -1,0 +1,81 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 15px;
+  .boxBonusDaily {
+    background: linear-gradient(46deg, #3f21d5 0%, #9054f0 100%);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+
+    .span {
+      background-color: var(--bg-uniq);
+      border-radius: 8px;
+      padding: 3px 7px;
+      font-weight: 590;
+      font-size: 12px;
+      margin-bottom: 10px;
+      color: var(--text-uniq);
+    }
+  }
+
+  .boxBonusCase {
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: linear-gradient(124deg, #3a3434 0%, #a09090 100%);
+    position: relative;
+
+    .spanFree {
+      color: var(--text-free);
+      background-color: var(--bg-free);
+      border-radius: 8px;
+      padding: 3px 7px;
+      font-weight: 590;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .bonusDaily {
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+  }
+
+  .descr {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    color: var(--white);
+    text-align: start;
+  }
+
+  .svg {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+
+  .questBox {
+    .title {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 140%;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .dot {
+      background-color: var(--bg-elements);
+      padding: 16px;
+      text-align: center;
+    }
+  }
+}

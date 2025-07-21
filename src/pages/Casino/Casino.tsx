@@ -9,6 +9,35 @@ import { useEffect, useState } from "react";
 import { InfoTMA } from "../../components/InfoTMA";
 import { Button } from "../../ui/Button";
 import { useNavigate } from "react-router-dom";
+import { Bonuses } from "../../components/Bonuses";
+import { PeopeOnliCasino } from "../../components/PeopeOnliCasino";
+
+const arr = [
+  {
+    id: "1",
+    logo_url: "/media/1WIN.png",
+    name: "1WIN",
+    dep: 500,
+    free_spin: 300,
+    url: "https://igtrack.xyz/click?key=f41cb00c2cec8761b32c",
+  },
+  {
+    id: "2",
+    logo_url: "/media/1WIN.png",
+    name: "WINWIN",
+    dep: null,
+    free_spin: 300,
+    url: "https://igtrack.xyz/click?key=f41cb00c2cec8761b32c",
+  },
+  {
+    id: "3",
+    logo_url: "/media/1WIN.png",
+    name: "Melbet",
+    dep: 10,
+    free_spin: null,
+    url: "https://igtrack.xyz/click?key=f41cb00c2cec8761b32c",
+  },
+];
 
 function Casino() {
   const casino = useSelector(getCasino);
@@ -30,7 +59,7 @@ function Casino() {
           <h3 className={style.title}>☘️ Колесо фортуны</h3>
           <p className={style.text}>Прокрути и выиграй</p>
         </div>
-        <Button className={style.btn} kind="secondary">
+        <Button className={style.btn}>
           Крутить
         </Button>
       </div>
@@ -39,6 +68,8 @@ function Casino() {
         title={"🏆 ТОП-10 за всё время"}
         arr={casino ? casino.top_10_casino : []}
       />
+      <PeopeOnliCasino />
+      {/* <Bonuses arr={arr} /> */}
       <InfoTMA />
     </div>
   );

@@ -121,10 +121,6 @@ function DailyBonus() {
         ))}
       </Swiper>
 
-      <div className={style.boxMesseg}>
-        <p className={style.descrMesseg}>Уведомления</p>
-        <LockSvg />
-      </div>
       {dayInfo && (
         <div className={style.infoDay}>
           <div className={style.boxTitle}>

@@ -1,6 +1,13 @@
-import { PrizeType, IDesignPlugin } from "react-roulette-pro";
+import { IDesignPlugin } from "react-roulette-pro";
 import style from "./RuleteLine.module.scss";
 import PrizeArrowSvg from "../../assets/svg/PrizeArrowSvg/PrizeArrowSvg";
+
+interface ItemType {
+  id: string | number;
+  image: string;
+  text: string;
+  description?: string;
+}
 
 const CustomDesignPlugin = (): IDesignPlugin => {
   return {
@@ -16,7 +23,8 @@ const CustomDesignPlugin = (): IDesignPlugin => {
     ),
     prizeItemWidth: 117,
     prizeItemHeight: 140,
-    prizeItemRenderFunction: (item: PrizeType) => (
+    //@ts-ignore
+    prizeItemRenderFunction: (item: ItemType) => (
       <div className={style.wrapper}>
         <img className={style.imgWrap} src={item.image} alt={item.text} />
         <p className={style.descrWrap}>{item.text}</p>

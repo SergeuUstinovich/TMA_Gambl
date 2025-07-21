@@ -11,6 +11,9 @@ import Profile from "./pages/Profile/Profile";
 import Wheel from "./pages/Wheel/Wheel";
 import Case from "./pages/Case/Case";
 import Daily from "./pages/Daily/Daily";
+import { InfoPeople } from "./components/PeopeOnliCasino";
+import Quest from "./pages/Quest/Quest";
+import Setting from "./pages/Setting/Setting";
 
 
 const Layout = lazy(() => import("./pages/Layout/Layout"));
@@ -47,12 +50,13 @@ function App() {
             <Route index element={<Casino />} />
             <Route path={'betting'} element={<Betting />} />
             <Route path={'poker'} element={<Poker />} />
-            <Route path={'quest'} element={<Betting />} />
-            <Route path={'setting'} element={<Poker />} />
+            <Route path={'quest'} element={<Quest />} />
+            <Route path={'setting'} element={<Setting />} />
             <Route path={'provile'} element={<Profile />} />
             <Route path={'wheel'} element={<Wheel />} />
             <Route path={'case'} element={<Case />} />
             <Route path={'daily'} element={<Daily />} />
+            <Route path={'/:id'} element={<InfoPeople />} />
           </Route>
         </Routes>
       </Suspense>

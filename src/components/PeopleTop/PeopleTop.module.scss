@@ -17,7 +17,6 @@
   .slide {
     border-radius: 10px;
     background-color: var(--bg-elements);
-    border-bottom: 3px solid #008e8f;
     .boxInfoCard {
       max-width: 460px;
       display: flex;
@@ -39,7 +38,6 @@
             width: 48px;
             height: 48px;
             margin-right: 11px;
-            border: 1px solid var(--white);
             border-radius: 10px;
           }
 
@@ -88,30 +86,28 @@
             max-width: 42px;
             border-radius: 8px;
             padding: 3px 7px;
-            background: rgba(121, 62, 198, 0.2);
+            background: var(--bg-dep);
             font-weight: 600;
             font-size: 12px;
-            color: var(--text-bonus);
+            color: var(--text-dep);
             margin-right: 4px;
           }
 
           .freespin {
-            background: rgba(0, 142, 143, 0.2);
+            background: var(--bg-fs);
             border-radius: 8px;
             padding: 3px 7px;
             font-weight: 600;
             font-size: 12px;
-            color: #008e8f;
+            color: var(--text-fs);
           }
         }
       }
 
       .btn {
-        padding: 7px 25px;
         font-weight: 700;
         font-size: 16px;
         line-height: 128%;
-        color: var(--white);
       }
     }
   }

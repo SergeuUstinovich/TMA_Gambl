@@ -45,19 +45,38 @@
   }
 }
 
+.boxActiveSearch {
+  background-color: var(--bg-elements);
+  padding: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 12px;
+  .svgSearch {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 .boxSearch {
   display: flex;
   background-color: var(--bg-elements);
   padding: 13px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   border-radius: 12px;
   cursor: pointer;
+  width: 0;
+  transition: width 0.5s ease;
 
-  .svgSearch {
-    width: 24px;
-    height: 24px;
+  .infoInput {
+    background-color: transparent;
+    color: var(--white);
   }
+}
+
+.activeInput {
+  width: 100%;
 }
 
 .searchBlock {

@@ -18,14 +18,20 @@ html {
   --black: #000;
   --bg-app: #09090c;
   --bg-elements: rgba(255, 255, 255, 0.08);
-  --text-input: #a8a8a8;
+  --text-input: #9ca3af;
   --text-nav-active: #3AC1FF;
   --bg-bonus: #13151d;
   --text-top: #acacac;
   --gray: #999;
   --text-rating: #c9c000;
-  --text-bonus: #793ec6;
-  --bg-switcher: #008e8f;
+  --bg-dep: rgba(52, 199, 89, 0.2);
+  --text-dep: #34c759;
+  --bg-fs: rgba(48, 176, 199, 0.2);
+  --text-fs: #30b0c7;
+  --text-uniq: #ff2d55;
+  --bg-uniq: rgba(255, 45, 85, 0.2);
+  --text-free: #fc0;
+  --bg-free: rgba(255, 204, 0, 0.2);
 }
 
 a {
