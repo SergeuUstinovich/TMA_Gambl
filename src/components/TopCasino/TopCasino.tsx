@@ -1,12 +1,12 @@
-import BgTopCasinoGreySvg from "../../assets/svg/BgTopCasinoGreySvg/BgTopCasinoGreySvg";
 import StarRatingSvg from "../../assets/svg/StarRatingSvg/StarRatingSvg";
 import style from "./TopCasino.module.scss";
 import { Button } from "../../ui/Button";
 import "swiper/scss";
 import { Swiper, SwiperSlide } from "swiper/react";
-import BgTopCasinoYellowSvg from "../../assets/svg/BgTopCasinoYellowSvg/BgTopCasinoYellowSvg";
-import BgTopCasinoPurpleSvg from "../../assets/svg/BgTopCasinoPurpleSvg/BgTopCasinoPurpleSvg";
-import BgTopCasinoBlueSvg from "../../assets/svg/BgTopCasinoBlueSvg/BgTopCasinoBlueSvg";
+import img1 from '../../assets/png/bgTop1.webp'
+import img2 from '../../assets/png/bgTop2.webp'
+import img3 from '../../assets/png/bgTop3.webp'
+import img4 from '../../assets/png/bgTop4.webp'
 import { CasinoCardType } from "../../types/CasinoType";
 import { useTelegram } from "../../providers/telegram/telegram";
 import LoaderContent from "../../ui/Loader/LoaderContent/LoaderContent";
@@ -40,14 +40,14 @@ function TopCasino({ title, arr }: TopCasinoProps) {
             <SwiperSlide className={style.slide} key={index}>
               <div className={style.boxSlide}>
                 {index === 0 && (
-                  <BgTopCasinoYellowSvg className={style.btSvg} />
+                  <img className={style.btSvg} src={img1} alt="" />
                 )}
-                {index === 1 && <BgTopCasinoBlueSvg className={style.btSvg} />}
+                {index === 1 && <img className={style.btSvg} src={img2} alt="" />}
                 {index === 2 && (
-                  <BgTopCasinoPurpleSvg className={style.btSvg} />
+                  <img className={style.btSvg} src={img3} alt="" />
                 )}
                 {index !== 0 && index !== 1 && index !== 2 && (
-                  <BgTopCasinoGreySvg className={style.btSvg} />
+                  <img className={style.btSvg} src={img4} alt="" />
                 )}
                 <span className={style.numberCard}>{index + 1}</span>
                 <div className={style.boxRating}>
