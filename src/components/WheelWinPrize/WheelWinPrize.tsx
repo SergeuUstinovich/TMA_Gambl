@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { WheelFortyneType } from "../../types/WheelFortune";
 import { Button } from "../../ui/Button";
 import style from "./WheelWinPrize.module.scss";
-import { useTelegram } from "../../providers/telegram/telegram";
 
 interface WheelWinPrizeProps {
   prize: WheelFortyneType;

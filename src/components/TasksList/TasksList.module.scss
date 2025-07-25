@@ -1,0 +1,45 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .item {
+    background-color: var(--bg-elements);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 150%;
+      max-width: 154px;
+    }
+
+    .span {
+      background-color: var(--bg-dep);
+      color: var(--text-dep);
+      border-radius: 8px;
+      padding: 3px 7px;
+    }
+
+    .btn_can {
+      font-weight: 700;
+      font-size: 14px;
+      text-align: center;
+      padding: 6px 8px;
+    }
+
+    .btn_receiv {
+      border: 1px solid var(--white);
+      border-radius: 9999px;
+      padding: 6px 8px;
+      font-weight: 700;
+      font-size: 14px;
+      text-align: center;
+      color: var(--white);
+    }
+  }
+}

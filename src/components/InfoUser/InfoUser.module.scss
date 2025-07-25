@@ -25,3 +25,27 @@
     }
   }
 }
+
+.infoBox {
+  background-color: var(--bg-elements);
+  border-radius: 16px;
+  padding: 20px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+
+  .infoTitle {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+    color: gray;
+  }
+
+  .infoDescr {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 120%;
+  }
+}

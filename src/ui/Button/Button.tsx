@@ -32,15 +32,21 @@ export const Button: FC<IButtonProps> = ({
     }
   };
   return (
-    <button
-      disabled={isDisabled}
-      type={type}
-      className={classNames(style.btn, {}, [className])}
-      data-kind={kind}
-      onClick={handleClick}
-      {...props}
-    >
-      {isLoading ? <LoaderButton /> : children}
-    </button>
+    <>
+      {isLoading ? (
+        <LoaderButton />
+      ) : (
+        <button
+          disabled={isDisabled}
+          type={type}
+          className={classNames(style.btn, {}, [className])}
+          data-kind={kind}
+          onClick={handleClick}
+          {...props}
+        >
+          {children}
+        </button>
+      )}
+    </>
   );
 };

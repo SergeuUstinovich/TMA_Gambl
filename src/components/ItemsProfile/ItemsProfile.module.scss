@@ -12,7 +12,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 7px;
-    margin-bottom: 30px;
+    margin-bottom: 85px;
 
     .item {
       display: flex;
@@ -53,17 +53,12 @@
 }
 
 .boxInfo {
-  background-image: url("../../assets/png/InfoItem.png");
-  background-repeat: no-repeat;
-  background-size: auto;
   width: 294px;
-  height: 373px;
-  margin-bottom: 27px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 45px 37px;
+  padding: 20px 23px;
 
   .imgWinner {
     width: 135px;
@@ -96,7 +91,6 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 128%;
-    color: var(--white);
   }
 }
 

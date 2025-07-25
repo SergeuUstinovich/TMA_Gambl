@@ -4,6 +4,7 @@ import { casinoReducer } from "../slice/casinoSlice";
 import { freeCaseReducer } from "../slice/freeCaseSlice";
 import { wheelFortyneReducer } from "../slice/wheelFortyneSlice";
 import { dailyBonusReducer } from "../slice/dailyBonusSlice";
+import { tasksReducer } from "../slice/tasksSlice";
 
 export function createReduxStore(initialState?: StateScheme) {
   const rootReducer: ReducersMapObject<StateScheme> = {
@@ -11,6 +12,7 @@ export function createReduxStore(initialState?: StateScheme) {
     allCase: freeCaseReducer,
     allWheel: wheelFortyneReducer,
     dailuBonus: dailyBonusReducer,
+    allTasks: tasksReducer,
   };
 
   return configureStore({

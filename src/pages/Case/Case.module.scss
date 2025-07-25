@@ -1,15 +1,24 @@
+.title {
+  padding: 16px;
+  text-align: center;
+}
+
 .closeCross {
-  position: absolute;
-  z-index: 10;
-  right: 5%;
-  top: 23px;
-  display: flex;
-  justify-content: flex-end;
-}
-.contentBg {
-  transform: translateY(100%);
-  transition: transform 0.2s ease;
-  &.fade {
-      transform: translateY(0);
+    position: absolute;
+    z-index: 10;
+    right: 5%;
+    top: 16px;
+    background-color: var(--white) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+     padding: 6px 6px 8px 5px;
+
+    .svg {
+      position: relative;
+      z-index: 11;
+      width: 24px;
+      height: 24px;
+    }
   }
-}

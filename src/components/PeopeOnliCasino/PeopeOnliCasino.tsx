@@ -3,16 +3,22 @@ import "swiper/scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useTelegram } from "../../providers/telegram/telegram";
 import { Button } from "../../ui/Button";
-import { dataPeople } from "./dataPeople";
 import { useNavigate } from "react-router-dom";
+import { LegendCasino } from "../../types/CasinoType";
 
-export function PeopeOnliCasino() {
+interface PeopeOnliCasinoProps {
+  arr: LegendCasino[]
+}
+
+const url = import.meta.env.VITE_API_BASE_URL
+
+export function PeopeOnliCasino({arr}: PeopeOnliCasinoProps) {
   const { tg } = useTelegram();
   const navigate = useNavigate();
-  const handleInfo = (id: string) => {
-    return null
-    // navigate(`/${id}`);
+  const handleInfo = (id: number) => {
+    navigate(`/${id}`);
   };
+
   return (
     <div className={style.box}>
       <h3 className={style.title}>💛 Легенды онлайн казино</h3>
@@ -22,14 +28,14 @@ export function PeopeOnliCasino() {
         slidesPerView={4.5}
         className={style.boxCard}
       >
-        {dataPeople.map((item) => (
+        {arr.map((item) => (
           <SwiperSlide className={style.slide} key={item.id}>
             <Button
               onClick={() => handleInfo(item.id)}
               kind="secondary"
               className={style.boxSlide}
             >
-              <img className={style.img} src={item.img} alt={item.name} />
+              <img className={style.img} src={`${url}${item.image}`} alt={item.name} />
               <p className={style.text}>{item.name}</p>
             </Button>
           </SwiperSlide>

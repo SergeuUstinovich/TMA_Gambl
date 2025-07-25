@@ -30,3 +30,4 @@ export function filterCasino() {
     })
     .catch(err => console.log(err));
 };
+

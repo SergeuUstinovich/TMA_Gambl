@@ -12,33 +12,6 @@ import { useNavigate } from "react-router-dom";
 import { Bonuses } from "../../components/Bonuses";
 import { PeopeOnliCasino } from "../../components/PeopeOnliCasino";
 
-const arr = [
-  {
-    id: "1",
-    logo_url: "/media/1WIN.png",
-    name: "1WIN",
-    dep: 500,
-    free_spin: 300,
-    url: "https://igtrack.xyz/click?key=f41cb00c2cec8761b32c",
-  },
-  {
-    id: "2",
-    logo_url: "/media/1WIN.png",
-    name: "WINWIN",
-    dep: null,
-    free_spin: 300,
-    url: "https://igtrack.xyz/click?key=f41cb00c2cec8761b32c",
-  },
-  {
-    id: "3",
-    logo_url: "/media/1WIN.png",
-    name: "Melbet",
-    dep: 10,
-    free_spin: null,
-    url: "https://igtrack.xyz/click?key=f41cb00c2cec8761b32c",
-  },
-];
-
 function Casino() {
   const casino = useSelector(getCasino);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -59,17 +32,17 @@ function Casino() {
           <h3 className={style.title}>☘️ Колесо фортуны</h3>
           <p className={style.text}>Прокрути и выиграй</p>
         </div>
-        <Button className={style.btn}>
-          Крутить
-        </Button>
+        <Button className={style.btn}>Крутить</Button>
       </div>
       <OffersWeek />
       <TopCasino
         title={"🏆 ТОП-10 за всё время"}
         arr={casino ? casino.top_10_casino : []}
       />
-      <PeopeOnliCasino />
-      {/* <Bonuses arr={arr} /> */}
+      {casino && (
+        <PeopeOnliCasino arr={casino.legend_of_casino} />
+      )}
+      {casino && <Bonuses arr={casino.bonus_for_casino} />}
       <InfoTMA />
     </div>
   );

@@ -1,5 +1,7 @@
 export interface CasinoType {
   user: UserType;
+  legend_of_casino: LegendCasino[];
+  bonus_for_casino: BonusType[];
   peoples_top: CasinoCardType[];
   top_10_casino: CasinoCardType[];
   offers_of_week: CasinoCardType[];
@@ -10,6 +12,7 @@ interface UserType {
   tg_name: string;
   set_sign: boolean;
   count_of_session: number;
+  token_money: number;
 }
 
 export interface CasinoCardType {
@@ -29,4 +32,18 @@ export interface CasinoCardType {
 
 export interface CasinoScheme {
   casino?: CasinoType;
+}
+
+export interface BonusType {
+  casino: CasinoCardType;
+  id: number;
+  place: number;
+}
+
+export interface LegendCasino {
+  bonus_for_casino: BonusType[];
+  id: number;
+  image: string;
+  name: string;
+  place: number;
 }

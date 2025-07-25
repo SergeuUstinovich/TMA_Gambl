@@ -4,7 +4,7 @@
   box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.15);
   background: rgba(30, 30, 40, 0.85);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  
+
   .list {
     display: flex;
     justify-content: center;
@@ -25,12 +25,14 @@
           .svg {
             width: 28px;
             height: 28px;
+            transition: all 0.3s ease;
           }
 
           .svgSetting {
             margin-top: 3px;
             width: 24px;
             height: 24px;
+            transition: all 0.3s ease;
           }
         }
 
@@ -48,6 +50,8 @@
       .item {
         .img {
           .svg {
+            width: 32px;
+            height: 32px;
             .helper {
               stroke: var(--text-nav-active);
               fill: transparent;
@@ -55,6 +59,11 @@
           }
           .svg path {
             fill: var(--text-nav-active);
+          }
+
+          .svgSetting {
+            width: 29px;
+            height: 29px;
           }
 
           .svgSetting path {

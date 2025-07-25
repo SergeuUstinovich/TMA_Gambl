@@ -55,7 +55,7 @@ function ItemsProfile() {
   return (
     <>
       <div className={style.box}>
-        <h2 className={style.title}>Предметы</h2>
+        <h2 className={style.title}>💼 Инвентарь</h2>
         {inventoryQuery.isPending ? (
           <LoaderContent className={style.loader} />
         ) : (
@@ -84,7 +84,7 @@ function ItemsProfile() {
           </ul>
         )}
       </div>
-      <Modal isOpen={isOpen} isSpecial closeBtn onClose={handleClose}>
+      <Modal isOpen={isOpen} isSpecial onClose={handleClose}>
         {infoItems && <InfoItem item={infoItems} />}
       </Modal>
     </>

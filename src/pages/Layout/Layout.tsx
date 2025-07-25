@@ -16,6 +16,8 @@ import { wheelFortyneActions } from "../../providers/StoreProvider/slice/wheelFo
 import { dailyBonusActions } from "../../providers/StoreProvider/slice/dailyBonusSlice";
 import { TabSwitcher } from "../../components/TabSwitcher/TabSwitcher";
 import { tabs } from "./navDataCasino";
+import { tasksActions } from "../../providers/StoreProvider/slice/tasksSlice";
+import { getTaskCasino } from "../../api/tasks";
 
 function Layout() {
   const { initData } = useTelegram();
@@ -88,6 +90,18 @@ function Layout() {
     }
   }, [dailyBonusQuery.data]);
 
+  const queryTasks = useQuery({
+    queryKey: ['tasks'],
+    queryFn: () => getTaskCasino(),
+    enabled: !!isLogin,
+  }, queryClient)
+
+  useEffect(() => {
+    if(queryTasks.data) {
+     dispatch(tasksActions.addData(queryTasks.data))
+    }
+  }, [queryTasks.data])
+
   useEffect(() => {
     const handleScroll = () => {
       const main = mainRef.current;
@@ -95,7 +109,8 @@ function Layout() {
         const scrollTop = main.scrollTop;
         const scrollHeight = main.scrollHeight;
         const clientHeight = main.clientHeight;
-        if (footerRef.current) {
+        
+        if (footerRef.current && (location.pathname === '/' || location.pathname === '/betting' || location.pathname === '/poker')) {
           if (scrollTop === 0) {
             // footerRef.current.classList.add(style.visible);
           } else if (scrollTop < scrollHeight - clientHeight - 40) {
@@ -115,7 +130,7 @@ function Layout() {
         main.removeEventListener("scroll", handleScroll);
       }
     };
-  }, []);
+  }, [location.pathname]);
 
   const handleSwitch = (id: string) => {
     setActiveTab(id);

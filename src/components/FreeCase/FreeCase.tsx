@@ -1,4 +1,3 @@
-import imgBg from "../../assets/png/bgFreeCase.png";
 import { FreeCaseType } from "../../types/FreeCase";
 import RuleteLine from "../RuleteLine/RuleteLine";
 import style from "./FreeCase.module.scss";
@@ -12,10 +11,6 @@ const url = import.meta.env.VITE_API_BASE_URL
 function FreeCase({ arrCase }: FreeCaseProps) {
   return (
     <div className={style.box}>
-      <div className={style.boxTitle}>
-        <img className={style.imgTitle} src={imgBg} alt="" />
-        <h2 className={style.title}>Бесплатные <br/> подарки</h2>
-      </div>
       <div className={style.boxRoulet}>
         <RuleteLine arrPrize={arrCase} />
       </div>

@@ -151,7 +151,6 @@ function RuleteLine({ arrPrize }: RuleteLineProps) {
         <p className={style.descr}>Вращения: {spinsValue}</p>
       </div>
       <Modal
-        closeBtn
         isOpen={modalPrize}
         onClose={handleCloseModal}
         isSpecial

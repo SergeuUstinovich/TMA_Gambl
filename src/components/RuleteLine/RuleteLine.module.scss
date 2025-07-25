@@ -87,17 +87,12 @@
 }
 
 .boxModalWinner {
-    background-image: url('../../assets/png/bgPrizeModalCase.png');
-    background-repeat: no-repeat;
-    background-size: auto;
     max-width: 294px;
-    height: 373px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 28px 37px;
-    margin-bottom: 27px;
+    padding: 20px 23px;
 
     .titleWinner {
         font-weight: 600;

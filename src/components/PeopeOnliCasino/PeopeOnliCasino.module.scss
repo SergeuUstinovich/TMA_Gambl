@@ -19,6 +19,10 @@
         flex-direction: column;
         gap: 7px;
 
+        .img {
+          width: 59px;
+        }
+
         .text {
           color: var(--text-input);
           font-weight: 400;

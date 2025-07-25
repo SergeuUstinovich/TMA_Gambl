@@ -4,7 +4,7 @@ import { Button } from "../../ui/Button";
 import imgDaily from "../../assets/png/dailyBonusNav.png";
 import imgFree from '../../assets/png/freeSpins.png'
 import ArrowSvg from "../../assets/svg/ArrowSvg/ArrowSvg";
-import LockSvg from "../../assets/svg/LockSvg/LockSvg";
+import { TasksList } from "../../components/TasksList";
 
 function Quest() {
   const navigate = useNavigate();
@@ -16,6 +16,8 @@ function Quest() {
   const hanldeDailyBonusOpen = () => {
     navigate("/daily");
   };
+
+  
 
   return (
     <div className={style.box}>
@@ -41,9 +43,7 @@ function Quest() {
       </Button>
       <div className={style.questBox}>
         <h3 className={style.title}>⭐ Задания</h3>
-        <div className={style.dot}>
-          <LockSvg className={style.dotSvg} />
-        </div>
+        <TasksList />
       </div>
     </div>
   );

@@ -4,6 +4,7 @@
   flex-direction: column;
   margin-bottom: 85px;
   padding-left: 30px;
+  padding-top: 15px;
        
 
   .title {
@@ -34,7 +35,7 @@
 
         .countInfo {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
           align-items: center;
           justify-content: center;
           background-color: var(--bg-dep);

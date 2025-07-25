@@ -257,7 +257,7 @@ function WheelFortune({ arrWheel }: WheelFortuneProps) {
           </div>
         </div>
       </div>
-      <Modal closeBtn isOpen={isOpen} onClose={handleCloseModal} isSpecial lazy>
+      <Modal isOpen={isOpen} onClose={handleCloseModal} isSpecial lazy>
         {prizeWin && (
           <WheelWinPrize onClose={handleCloseModal} prize={prizeWin} />
         )}
