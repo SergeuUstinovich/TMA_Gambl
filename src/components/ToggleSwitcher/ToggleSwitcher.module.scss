@@ -1,0 +1,53 @@
+.group {
+  position: relative;
+  display: flex;
+  height: 28px;
+  width: 65px;
+  cursor: pointer;
+  border: none;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.08);
+  transition: background-color 0.3s ease-in-out;
+  outline: none;
+  padding: 2.5px 3px;
+
+
+  &[data-checked] {
+    background-color: var(--toggle-active);
+  }
+
+  &[data-checked] span {
+    transform: translateX(20px);
+  }
+
+  .sun {
+    position: absolute;
+    top: 9.5px;
+    left: 8px;
+  }
+
+  .moon {
+    position: absolute;
+    top: 9.5px;
+    right: 8px;
+  }
+
+  .loaderBnt {
+    width: 15px;
+    height: 15px;
+  }
+
+  /* внутренний круг */
+  span {
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 23px;
+    border-radius: 9999px;
+    background-color: var(--white);
+    transition: transform 0.3s ease-in-out;
+    z-index: 5;
+  }
+}

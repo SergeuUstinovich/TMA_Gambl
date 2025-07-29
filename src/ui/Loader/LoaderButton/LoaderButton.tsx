@@ -1,5 +1,9 @@
 import style from "./LoaderButton.module.scss";
 
-export const LoaderButton = () => (
-  <span className={style.loader}></span>
+interface LoaderButtonProps {
+  className: string;
+}
+
+export const LoaderButton = ({className}: LoaderButtonProps) => (
+  <span className={`${className} ${style.loader}`}></span>
 );

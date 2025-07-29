@@ -1,17 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../../ui/Modal/Modal";
 import { Button } from "../../ui/Button";
 import ArrowSvg from "../../assets/svg/ArrowSvg/ArrowSvg";
 import style from "./Setting.module.scss";
 import { dataSetting, dataSettingType } from "./dataSetting";
-import LockSvg from "../../assets/svg/LockSvg/LockSvg";
 import imgRef from "../../assets/png/referalBg.png";
 import { useTelegram } from "../../providers/telegram/telegram";
+import { ToggleSwitcher } from "../../components/ToggleSwitcher";
+import { useMutation } from "@tanstack/react-query";
+import { queryClient } from "../../api/queryClient";
+import { settingMessenge } from "../../api/setting";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { getCasino } from "../../providers/StoreProvider/selectors/getCasino";
+import { casinoActions } from "../../providers/StoreProvider/slice/casinoSlice";
 
 function Setting() {
   const [isOpen, setIsOpen] = useState(false);
   const [contentModal, setContentModal] = useState<dataSettingType>();
+  const userCasino = useSelector(getCasino);
+  const [isMesseg, setIsMesseg] = useState(() => {
+    const status = localStorage.getItem("messeng");
+    return status ? JSON.parse(status) : userCasino?.user.push_trigger;
+  });
+  const dispanch = useDispatch()
+  
   const { tg } = useTelegram();
+
+  const handleToogle = () => {
+    mutateMessenge.mutate();
+  };
+
+  const mutateMessenge = useMutation(
+    {
+      mutationFn: () => settingMessenge(),
+      onSuccess: (data) => {
+        localStorage.setItem("messeng", JSON.stringify(data));
+        dispanch(casinoActions.updatePushTrigger(data))
+        setIsMesseg(data)
+      },
+      onError: (err) => {
+        toast.error(err.message);
+      },
+    },
+    queryClient
+  );
 
   const handleOpen = (item: dataSettingType) => {
     setContentModal(item);
@@ -61,7 +94,15 @@ function Setting() {
                     <h2 className={style.titleInfo}>{item.title}</h2>
                     <p className={style.descrInfo}>{item.descr}</p>
                   </div>
-                  {item.isModal ? <ArrowSvg /> : <LockSvg />}
+                  {item.isModal ? (
+                    <ArrowSvg />
+                  ) : (
+                    <ToggleSwitcher
+                      isLoad={mutateMessenge.isPending}
+                      isStatus={isMesseg}
+                      handleToogle={handleToogle}
+                    />
+                  )}
                 </Button>
               </li>
             ))}

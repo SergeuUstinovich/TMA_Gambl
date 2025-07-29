@@ -13,6 +13,8 @@ interface UserType {
   set_sign: boolean;
   count_of_session: number;
   token_money: number;
+  ai_push_trigger: boolean;
+  push_trigger: boolean;
 }
 
 export interface CasinoCardType {
