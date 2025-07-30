@@ -83,7 +83,8 @@
     .content {
       padding: 20px;
       border-radius: 12px;
-      background: var(--bg-elements);
+      background-color: rgba(48, 48, 48, 0.9);
+      backdrop-filter: blur(30px);
       transition: 0.3s transform;
       transform: scale(0.5);
       max-width: 90%;

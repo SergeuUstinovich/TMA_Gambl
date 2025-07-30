@@ -11,22 +11,22 @@ import { useState } from "react";
 
 export function TasksList() {
   const tasks = useSelector(getTasks);
-    const [activeLoadingId, setActiveLoadingId] = useState<number | null>(null);
+  const [activeLoadingId, setActiveLoadingId] = useState<number | null>(null);
   const [checkLoadingId, setCheckLoadingId] = useState<number | null>(null);
   const mutateActiveTasks = useMutation(
     {
       mutationFn: (data: { id: number }) => {
-        setActiveLoadingId(data.id)
-        return activeTask(data.id)
+        setActiveLoadingId(data.id);
+        return activeTask(data.id);
       },
       onSuccess: () => {
-        queryClient.invalidateQueries({queryKey: ['tasks']})
+        queryClient.invalidateQueries({ queryKey: ["tasks"] });
         setActiveLoadingId(null);
       },
       onError: (err) => {
         toast.error(err.message);
-        setActiveLoadingId(null)
-      }
+        setActiveLoadingId(null);
+      },
     },
     queryClient
   );
@@ -34,19 +34,19 @@ export function TasksList() {
   const mutateCheckTasks = useMutation(
     {
       mutationFn: (data: { id: number }) => {
-        setCheckLoadingId(data.id)
-        return checkTask(data.id)
+        setCheckLoadingId(data.id);
+        return checkTask(data.id);
       },
       onSuccess: () => {
-        queryClient.invalidateQueries({queryKey: ['tasks']})
-        queryClient.invalidateQueries({queryKey: ["casino"]})
+        queryClient.invalidateQueries({ queryKey: ["tasks"] });
+        queryClient.invalidateQueries({ queryKey: ["casino"] });
         toast.success(`Задание успешно выполненно`);
-        setCheckLoadingId(null)
+        setCheckLoadingId(null);
       },
       onError: (err) => {
         toast.error(err.message);
-        setCheckLoadingId(null)
-      }
+        setCheckLoadingId(null);
+      },
     },
     queryClient
   );
@@ -64,7 +64,9 @@ export function TasksList() {
       {tasks?.map((item) => (
         <li className={style.item} key={item.task.id}>
           <h3 className={style.title}>{item.task.name}</h3>
-          <span className={style.span}>+{item.task.prize}</span>
+          {!item.received_prize && (
+            <span className={style.span}>+{item.task.prize}</span>
+          )}
           {!item.can_get_prize && (
             <Button
               isLoading={activeLoadingId === item.task.id}

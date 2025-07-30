@@ -30,17 +30,19 @@ function InfoItem({ item }: { item: InventoryType }) {
 
   return (
     <div className={style.boxInfo}>
+      <h3 className={style.titleInfo}>{item.text}</h3>
       <img
         className={style.imgWinner}
         src={`${url}${item.image_without_background_url}`}
         alt=""
       />
+      <p className={style.descrInfo}>{item.description}</p>
       {item.promo_code !== "" && (
         <Button onClick={copyToRefLink} className={style.boxCopy}>
           <h3 className={style.title}>Скопировать код</h3>
           <CopySvg />
         </Button>
-      )}
+       )}
       <Button onClick={() => swapLink(item.url_product)} className={style.btn}>
         Активировать
       </Button>
