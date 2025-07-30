@@ -7,7 +7,7 @@ import { LoaderButton } from "../../ui/Loader/LoaderButton";
 interface ToggleSwitcherProps {
     isLoad: boolean;
     isStatus: boolean;
-    handleToogle: () => void
+    handleToogle?: () => void
 }
 
 export function ToggleSwitcher({isStatus, handleToogle, isLoad}: ToggleSwitcherProps) {

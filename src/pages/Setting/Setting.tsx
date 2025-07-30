@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from "../../ui/Modal/Modal";
 import { Button } from "../../ui/Button";
 import ArrowSvg from "../../assets/svg/ArrowSvg/ArrowSvg";
 import style from "./Setting.module.scss";
 import { dataSetting, dataSettingType } from "./dataSetting";
 import imgRef from "../../assets/png/referalBg.png";
+import imgAi from '../../assets/png/aiFunction.png'
 import { useTelegram } from "../../providers/telegram/telegram";
 import { ToggleSwitcher } from "../../components/ToggleSwitcher";
 import { useMutation } from "@tanstack/react-query";
@@ -14,11 +15,13 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { getCasino } from "../../providers/StoreProvider/selectors/getCasino";
 import { casinoActions } from "../../providers/StoreProvider/slice/casinoSlice";
+import { useNavigate } from "react-router-dom";
 
 function Setting() {
   const [isOpen, setIsOpen] = useState(false);
   const [contentModal, setContentModal] = useState<dataSettingType>();
   const userCasino = useSelector(getCasino);
+  const navigate = useNavigate()
   const [isMesseg, setIsMesseg] = useState(() => {
     const status = localStorage.getItem("messeng");
     return status ? JSON.parse(status) : userCasino?.user.push_trigger;
@@ -64,10 +67,27 @@ function Setting() {
     });
   };
 
+  const handleAi = () => {
+    navigate('/ai-function')
+  }
+
   return (
     <>
       <div className={style.box}>
         <div className={style.boxSetting}>
+          <Button
+            onClick={handleAi}
+            className={style.boxAi}
+            kind="secondary"
+          >
+            <img src={imgAi} className={style.bonusAi} />
+            <span className={style.spanAi}>Бета</span>
+            <p className={style.descr}>
+              ИИ <br />
+              функции
+            </p>
+            <ArrowSvg className={style.svg} />
+          </Button>
           <Button
             onClick={hanldeFreeCaseOpen}
             className={style.boxReferall}
@@ -88,7 +108,7 @@ function Setting() {
                 <Button
                   kind="secondary"
                   className={style.btn}
-                  onClick={item.isModal ? () => handleOpen(item) : () => {}}
+                  onClick={item.isModal ? () => handleOpen(item) : handleToogle}
                 >
                   <div className={style.infoBox}>
                     <h2 className={style.titleInfo}>{item.title}</h2>
@@ -100,7 +120,7 @@ function Setting() {
                     <ToggleSwitcher
                       isLoad={mutateMessenge.isPending}
                       isStatus={isMesseg}
-                      handleToogle={handleToogle}
+                      // handleToogle={handleToogle}
                     />
                   )}
                 </Button>

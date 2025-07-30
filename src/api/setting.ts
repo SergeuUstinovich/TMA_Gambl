@@ -15,3 +15,13 @@ export function settingMessenge() {
     })
     .catch(validateResponse);
 }
+
+export function aiFunction() {
+  return axios
+    .post(`${api_url}/api/change_flag_ai_notification/`)
+    .then((response) => {
+      const data = response.data.ai_push_trigger;
+      return data;
+    })
+    .catch(validateResponse);
+}

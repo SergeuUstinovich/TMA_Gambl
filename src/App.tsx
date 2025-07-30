@@ -14,6 +14,7 @@ import Daily from "./pages/Daily/Daily";
 import { InfoPeople } from "./components/PeopeOnliCasino";
 import Quest from "./pages/Quest/Quest";
 import Setting from "./pages/Setting/Setting";
+import AiFunction from "./pages/AiFunction/AiFunction";
 
 
 const Layout = lazy(() => import("./pages/Layout/Layout"));
@@ -56,6 +57,7 @@ function App() {
             <Route path={'wheel'} element={<Wheel />} />
             <Route path={'case'} element={<Case />} />
             <Route path={'daily'} element={<Daily />} />
+            <Route path={'ai-function'} element={<AiFunction />} />
             <Route path={'/:id'} element={<InfoPeople />} />
           </Route>
         </Routes>

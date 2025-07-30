@@ -15,6 +15,11 @@ export const casinoSlice = createSlice({
         state.casino.user.push_trigger = action.payload;
       }
     },
+    updateAiPushTrigger: (state, action: PayloadAction<boolean>) => {
+      if (state.casino?.user) {
+        state.casino.user.ai_push_trigger = action.payload;
+      }
+    },
   },
 });
 

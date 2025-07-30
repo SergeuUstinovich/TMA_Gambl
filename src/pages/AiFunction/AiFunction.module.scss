@@ -1,0 +1,84 @@
+.box {
+  padding: 0 15px;
+
+  .btn {
+    padding: 0;
+    background-color: var(--bg-elements);
+    border-radius: 16px;
+    padding: 20px 16px;
+    width: 100%;
+    margin-bottom: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .infoBox {
+      display: flex;
+      flex-direction: column;
+      text-align: start;
+
+      .title {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 150%;
+        color: var(--white);
+        margin-bottom: 5px;
+      }
+
+      .descr {
+        max-width: 180px;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 133%;
+        color: var(--text-input);
+      }
+    }
+  }
+
+  .boxBeta {
+    border-radius: 16px;
+    padding: 15px 23px;
+    width: 100%;
+    background: rgba(243, 192, 9, 0.2);
+    border: 1px solid rgba(243, 192, 9, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .betaInfo {
+      text-align: start;
+      .titleBeta {
+        color: var(--text-free);
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 150%;
+        margin-bottom: 5px;
+      }
+
+      .descrBeta {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 133%;
+        color: var(--text-input);
+      }
+    }
+  }
+}
+
+.boxModal {
+  .titleModal {
+    padding-top: 34px;
+    // max-width: 340px;
+    font-weight: 700;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .descrModal {
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--text-input);
+    margin-bottom: 20px;
+  }
+}

@@ -32,7 +32,7 @@
           width: 100%;
           height: 100%;
         }
-  
+
         .boxRating {
           display: flex;
           position: absolute;
@@ -42,18 +42,18 @@
           padding: 2px 4px;
           box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
           background: #13151d;
-  
+
           .ratingSvg {
             margin-right: 2px;
           }
-  
+
           .descrSvg {
             font-weight: 600;
             font-size: 10px;
             color: var(--text-rating);
           }
         }
-  
+
         .imgName {
           width: 67px;
           height: 66px;
@@ -64,7 +64,7 @@
           outline: 1px solid var(--white);
           border-radius: 10px;
         }
-  
+
         .boxName {
           position: absolute;
           left: 50%;
@@ -74,13 +74,13 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-  
+
           .title {
             font-weight: 600;
             font-size: 15px;
             margin-bottom: 4px;
           }
-  
+
           .descr {
             width: 100%;
             text-align: center;
@@ -89,7 +89,7 @@
             color: var(--text-top);
           }
         }
-  
+
         .btn {
           position: absolute;
           bottom: 15px;
@@ -100,7 +100,41 @@
           line-height: 128%;
         }
       }
-      
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .box {
+    .boxCard {
+      .slide {
+        .boxSlide {
+          .numberCard {
+            font-size: 40px;
+          }
+
+          .imgName {
+            width: 53px;
+            height: 53px;
+          }
+
+          .boxName {
+
+            .title {
+              font-size: 12px;
+            }
+
+            .descr {
+              max-width: 80px;
+              font-size: 8px;
+            }
+          }
+
+          .btn {
+            font-size: 12px;
+          }
+        }
+      }
     }
   }
 }
