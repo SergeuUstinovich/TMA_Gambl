@@ -30,8 +30,8 @@ export function InfoTMA() {
       </ul>
       <div className={style.infoBox}>
         <div className={style.imgBox}>
-            <img src={img1} alt="" />
-            <img src={img2} alt="" />
+            <img className={style.imgInfo} src={img1} alt="" />
+            <img className={style.imgInfo} src={img2} alt="" />
         </div>
         <p className={style.descr}>© 2025 DEPHUB. All rights reserved</p>
       </div>

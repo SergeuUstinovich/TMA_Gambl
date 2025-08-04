@@ -8,9 +8,12 @@
     justify-content: center;
     align-items: center;
     border-radius: 100px;
-    padding: 6px 6px 8px 5px;
+    padding: 6px 6px 7px 5px;
 
     .svg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: relative;
       z-index: 11;
       width: 24px;

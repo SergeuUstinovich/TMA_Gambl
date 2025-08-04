@@ -25,6 +25,10 @@
       align-items: center;
       gap: 16px;
       margin-bottom: 13px;
+
+      .imgInfo {
+        max-width: 37px;
+      }
     }
 
     .descr {

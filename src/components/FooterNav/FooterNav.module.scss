@@ -4,6 +4,7 @@
   box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.15);
   background: rgba(30, 30, 40, 0.85);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+  height: 89px;
 
   .list {
     display: flex;
@@ -42,6 +43,7 @@
           line-height: 152%;
           letter-spacing: 0.01em;
           color: var(--text-input);
+          transition: all 0.3s ease;
         }
       }
     }
@@ -72,6 +74,8 @@
         }
 
         .descr {
+          font-weight: 700;
+          font-size: 12px;
           color: var(--white);
         }
       }

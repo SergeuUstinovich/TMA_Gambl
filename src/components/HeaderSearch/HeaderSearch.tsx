@@ -160,7 +160,7 @@ function HeaderSearch({isLogin}: {isLogin: boolean}) {
         <div onClick={handleActive} className={style.boxActiveSearch}>
             <SearchSvg className={style.svgSearch} />
         </div>
-        <div>
+        <div className={style.boxLogo}>
           <img src={logoImg} alt="" />
         </div>
         <div className={style.boxSetting}>

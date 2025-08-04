@@ -59,12 +59,11 @@ function Setting() {
     setIsOpen(false);
   };
 
-  const hanldeFreeCaseOpen = () => {
-    tg.share({
-      title: "Посмотри этот крутой бот!",
-      text: "Привет! Я нашел интересного бота:",
-      url: "https://t.me/Zerkala_games_bot",
-    });
+  const hanldeRef = () => {
+    const link =
+      `https://t.me/share/url?url=https://t.me/dephubot`;
+    //можно после ссылки вставить &text={опциональный_текст}
+    tg.openTelegramLink(link);
   };
 
   const handleAi = () => {
@@ -89,7 +88,7 @@ function Setting() {
             <ArrowSvg className={style.svg} />
           </Button>
           <Button
-            onClick={hanldeFreeCaseOpen}
+            onClick={hanldeRef}
             className={style.boxReferall}
             kind="secondary"
           >

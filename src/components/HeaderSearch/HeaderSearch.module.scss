@@ -5,11 +5,15 @@
   padding: 0 15px;
   width: 100%;
 
+  .boxLogo {
+    max-width: 140px;
+  }
+
   .boxSetting {
     display: flex;
     align-items: center;
     background-color: var(--bg-elements);
-    border-radius: 10px;
+    border-radius: 100px;
     padding: 3px;
 
     .boxAvatar {

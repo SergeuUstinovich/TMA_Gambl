@@ -35,6 +35,9 @@
       }
 
       .dep {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: 8px;
         padding: 3px 7px;
         background: var(--bg-dep);
@@ -44,6 +47,9 @@
       }
 
       .spin {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: 8px;
         padding: 3px 7px;
         background: var(--bg-fs);
