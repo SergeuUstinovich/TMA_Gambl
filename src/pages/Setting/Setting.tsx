@@ -70,6 +70,10 @@ function Setting() {
     navigate('/ai-function')
   }
 
+  const handleBotLink = () => {
+    tg.openTelegramLink('https://t.me/dephubsupportbot');
+  }
+
   return (
     <>
       <div className={style.box}>
@@ -133,7 +137,11 @@ function Setting() {
           <div className={style.modalBox}>
             <h3 className={style.modalTitle}>{contentModal.title}</h3>
             <p className={style.modalText}>{contentModal.text}</p>
-            <p className={style.modalText}>{contentModal.text2}</p>
+            {contentModal.id === 3 ? (
+              <Button kind="secondary" onClick={handleBotLink} className={style.modalText}>{contentModal.text2}</Button>
+            ) : (
+              <p className={style.modalText}>{contentModal.text2}</p>
+            )}
             <p className={style.modalText}>{contentModal.text3}</p>
           </div>
         )}

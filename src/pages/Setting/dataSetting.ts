@@ -30,7 +30,7 @@ export const dataSetting = [
     title: "Поддержка",
     descr: "Свяжитесь с нами",
     text: "",
-    text2: 'Telegram: @dephub_support',
+    text2: 'Telegram: @dephubsupportbot',
     text3: 'Время работы: 24/7',
     isModal: true,
   },
