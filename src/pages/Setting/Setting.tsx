@@ -128,7 +128,7 @@ function Setting() {
           </ul>
         </div>
       </div>
-      <Modal onClose={handleClose} isSpecial isOpen={isOpen}>
+      <Modal lazy onClose={handleClose} isSpecial isOpen={isOpen}>
         {contentModal && (
           <div className={style.modalBox}>
             <h3 className={style.modalTitle}>{contentModal.title}</h3>

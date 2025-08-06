@@ -38,16 +38,13 @@ function Modal(props: ModalProps) {
 
   const closeHandler = useCallback(() => {
     if (onClose) {
-      setIsClosing(true);
+      setIsClosing(true)
       timeRef.current = setTimeout(() => {
-        setIsClosing(false);
-        onClose();
-        if (window.history.state && window.history.state.modalOpen) {
-          window.history.back();
-        }
-      }, 300);
+        setIsClosing(false)
+        onClose()
+      }, 300)
     }
-  }, [onClose]);
+  }, [onClose])
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -58,10 +55,6 @@ function Modal(props: ModalProps) {
     [closeHandler]
   );
 
-  const onPopState = useCallback(() => {
-    closeHandler();
-  }, [closeHandler]);
-
 
   const onContentClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -70,16 +63,13 @@ function Modal(props: ModalProps) {
   useEffect(() => {
     if (isOpen) {
       setIsMouned(true);
-      history.pushState({ modalOpen: true }, "");
       window.addEventListener("keydown", onKeyDown);
-      window.addEventListener("popstate", onPopState);
       document.body.classList.add(style.bodyOpen);
     }
 
     return () => {
       clearTimeout(timeRef.current);
       window.removeEventListener("keydown", onKeyDown);
-      window.removeEventListener("popstate", onPopState);
       document.body.classList.remove(style.bodyOpen);
     };
   }, [isOpen, onKeyDown]);

@@ -38,6 +38,9 @@
 }
 
 .boxInfo {
+  height: 100%;
+  overflow: scroll;
+  padding-bottom: 99px;
     
   .info {
     border-radius: 16px;
