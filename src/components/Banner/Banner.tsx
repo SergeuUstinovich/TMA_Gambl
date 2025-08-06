@@ -21,7 +21,7 @@ function Banner() {
         <div className={style.boxBtn}>
           <Button
             onClick={() =>
-              swapLink("https://igtrack.xyz/click?key=ff1ce163844ce90bfefa")
+              swapLink("https://zerkalogame.bet/888Q431J?source=app")
             }
             className={style.btn}
           >

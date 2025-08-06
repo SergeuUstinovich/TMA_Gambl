@@ -34,7 +34,8 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          background: rgba(0, 0, 0, 0.7);
+          backdrop-filter: blur(20px);
+          background: rgba(0, 0, 0, 0.5);
           border-radius: 10px;
           padding: 10px;
 
@@ -101,9 +102,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 12.67px 16px;
             border-radius: 20px;
-            background-color: #565656;
+            padding: 13px 16px;
+            background: rgba(118, 118, 128, 0.32);
 
             .svg {
               margin-left: 3px;
