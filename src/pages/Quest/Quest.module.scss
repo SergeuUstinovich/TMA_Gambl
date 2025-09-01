@@ -24,6 +24,26 @@
     }
   }
 
+  .boxBonusWheal {
+    background: linear-gradient(124deg, #3bb96f 0%, #dbf400 100%);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+
+    .span {
+      color: var(--text-free);
+      background-color: var(--bg-free);
+      border-radius: 8px;
+      padding: 3px 7px;
+      font-weight: 590;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+  }
+
   .boxBonusCase {
     border-radius: 16px;
     padding: 16px;

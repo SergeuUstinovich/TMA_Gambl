@@ -8,6 +8,7 @@
     background: var(--black);
     overflow-y: scroll;
     z-index: 10;
+    padding-top: var(--tg-content-safe-area-inset-top);
   }
   
   .overlay {

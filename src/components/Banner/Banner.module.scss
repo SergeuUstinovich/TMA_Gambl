@@ -1,9 +1,17 @@
 .box {
-  padding: 0 15px;
+  padding: 0 0 0 15px;
   margin-bottom: 30px;
   width: 100%;
   max-width: 576px;
   position: relative;
+
+  .boxCard {
+    padding-right: 15px;
+  }
+
+  .img {
+    border-radius: 12px;
+  }
 
   .boxBanner {
     width: 100%;
@@ -13,7 +21,8 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: 30px;
+    left: 25px;
+    max-width: 270px;
 
     .title {
       font-weight: 800;
@@ -36,8 +45,42 @@
         font-weight: 700;
         font-size: 16px;
         line-height: 150%;
-        margin-right: 15px;
       }
     }
   }
+}
+
+@media(max-width: 360px) {
+  .box {
+
+  .boxBanner {
+    max-width: 250px;
+    .title {
+      max-width: 180px;
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 120%;
+      margin-bottom: 8px;
+    }
+
+    .descr {
+      max-width: 180px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 143%;
+      margin-bottom: 8px;
+      color: #9ca3af;
+    }
+
+    .boxBtn {
+      .btn {
+        border: none;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 150%;
+        padding: 6px 16px;
+      }
+    }
+  }
+}
 }

@@ -1,0 +1,43 @@
+.list {
+  padding: 0 15px;
+  padding-bottom: 91px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 140%;
+    margin-bottom: 10px;
+  }
+
+  .item {
+    border-radius: 16px;
+    padding: 16px 14px;
+    background: var(--bg-elements);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .boxInfo {
+      display: flex;
+      align-items: center;
+      .img {
+        max-width: 24px;
+        margin-right: 5px;
+      }
+
+      .text {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 150%;
+      }
+    }
+
+    .btn {
+      font-weight: 700;
+      font-size: 14px;
+      padding: 6px 7px;
+    }
+  }
+}

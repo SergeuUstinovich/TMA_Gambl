@@ -19,7 +19,7 @@ html {
   --bg-app: #09090c;
   --bg-elements: rgba(255, 255, 255, 0.08);
   --text-input: #9ca3af;
-  --text-nav-active: #3AC1FF;
+  --text-nav-active: #34c759;
   --bg-bonus: #13151d;
   --text-top: #acacac;
   --gray: #999;
@@ -32,8 +32,9 @@ html {
   --bg-uniq: rgba(255, 45, 85, 0.2);
   --text-free: #fc0;
   --bg-free: rgba(255, 204, 0, 0.2);
-  --btn-bg: #0080ff;
+  --btn-bg: #34c759;
   --toggle-active: #34c759;
+  --active-footer: #11FF8D;
 }
 
 a {
@@ -60,6 +61,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  padding-top: var(--tg-content-safe-area-inset-top);
 }
 
 img {

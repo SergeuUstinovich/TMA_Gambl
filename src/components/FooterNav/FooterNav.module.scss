@@ -54,12 +54,12 @@
             width: 28px;
             height: 28px;
             .helper {
-              stroke: var(--text-nav-active);
+              stroke: var(--active-footer);
               fill: transparent;
             }
           }
           .svg path {
-            fill: var(--text-nav-active);
+            fill: var(--active-footer);
           }
 
           .svgSetting {
@@ -68,7 +68,7 @@
           }
 
           .svgSetting path {
-            stroke: var(--text-nav-active);
+            stroke: var(--active-footer);
           }
         }
 

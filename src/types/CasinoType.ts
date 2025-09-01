@@ -5,6 +5,41 @@ export interface CasinoType {
   peoples_top: CasinoCardType[];
   top_10_casino: CasinoCardType[];
   offers_of_week: CasinoCardType[];
+  banners: BannerType[];
+  // big_win: ;
+}
+
+export interface BannerType {
+  id: number;
+  image: string;
+  name: string;
+  chance: ChanceType;
+  casino: BannerCasinoType[];
+  button_text: string;
+  description: string;
+  picture_x2: {
+    image_url: string;
+  };
+  only_link: boolean;
+  link_for_button: string | null;
+}
+
+interface BannerCasinoType {
+  casino: {
+      logo_url: string;
+      name: string;
+  }
+  id: number;
+  link: string;
+  name_game: string;
+}
+
+interface ChanceType {
+  id: number;
+  color: string;
+  text: string;
+  color_text: string;
+  description: string;
 }
 
 interface UserType {

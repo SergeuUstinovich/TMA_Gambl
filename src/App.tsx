@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect } from "react";
 import "./styles/global/App.scss";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { useTelegram } from "./providers/telegram/telegram";
 import { LoaderPage } from "./ui/Loader/LoaderPage";
 // import Layout from "./pages/Layout/Layout";
@@ -15,6 +15,7 @@ import { InfoPeople } from "./components/PeopeOnliCasino";
 import Quest from "./pages/Quest/Quest";
 import Setting from "./pages/Setting/Setting";
 import AiFunction from "./pages/AiFunction/AiFunction";
+import { BannerInfo } from "./components/Banner/BannerInfo";
 
 
 const Layout = lazy(() => import("./pages/Layout/Layout"));
@@ -27,10 +28,10 @@ const Layout = lazy(() => import("./pages/Layout/Layout"));
 // const Daily = lazy(() => import("./pages/Daily/Daily"));
 
 function App() {
-  useTelegram().tg.expand();
-  useTelegram().tg.disableVerticalSwipes();
-  useTelegram().tg.setHeaderColor("#000", "#fff");
-  const {tg} = useTelegram()
+  const {tg} = useTelegram();
+  tg.expand();
+  tg.disableVerticalSwipes();
+
   const location = useLocation()
   const navigate = useNavigate()
   useEffect(() => {
@@ -58,8 +59,10 @@ function App() {
             <Route path={'case'} element={<Case />} />
             <Route path={'daily'} element={<Daily />} />
             <Route path={'ai-function'} element={<AiFunction />} />
+            <Route path={'banner/:id'} element={<BannerInfo />} />
             <Route path={'/:id'} element={<InfoPeople />} />
           </Route>
+          <Route path={'*'} element={<Navigate to={'/'} />} />
         </Routes>
       </Suspense>
     </>

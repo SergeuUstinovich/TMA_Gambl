@@ -17,6 +17,9 @@ export const useTelegram = () => {
   const tg_id = MODE ? tg?.initDataUnsafe?.user?.id : '12323123';
   const userName = MODE ? tg?.initDataUnsafe?.user?.username : "byngra";
   const firstName = MODE ? tg?.initDataUnsafe?.user?.first_name : "Сергей";
+  if(MODE) {
+      tg.requestFullscreen();
+  }
 
   return { tg, userName, tg_id, photo, firstName, initData };
 };

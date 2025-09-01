@@ -1,34 +1,65 @@
 import { Button } from "../../ui/Button";
 import style from "./Banner.module.scss";
-import img from "../../assets/png/banner.png";
 import { useTelegram } from "../../providers/telegram/telegram";
+import "swiper/scss";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import LoaderContent from "../../ui/Loader/LoaderContent/LoaderContent";
+import { useSelector } from "react-redux";
+import { getCasino } from "../../providers/StoreProvider/selectors/getCasino";
+import { useNavigate } from "react-router-dom";
+
+const url = import.meta.env.VITE_API_BASE_URL;
 
 function Banner() {
   const { tg } = useTelegram();
-  const swapLink = (link: string) => {
-    tg.openLink(link, { try_instant_view: true });
+  const banner = useSelector(getCasino);
+  const navigate = useNavigate();
+
+  const swapLink = (id: number, isLink: boolean, link: string | null) => {
+    if (isLink && link) {
+      tg.openLink(link, { try_instant_view: true });
+    } else {
+      navigate(`/banner/${id}`);
+    }
   };
+
   return (
     <div className={style.box}>
-      <img className={style.img} src={img} alt="" />
-      <div className={style.boxBanner}>
-        <h1 className={style.title}>
-          Бонус на депозит <br /> до 500%
-        </h1>
-        <p className={style.descr}>
-          Лучшее предложение на рынке
-        </p>
-        <div className={style.boxBtn}>
-          <Button
-            onClick={() =>
-              swapLink("https://zerkalogame.bet/888Q431J?source=app")
-            }
-            className={style.btn}
-          >
-            Получить бонус
-          </Button>
-        </div>
-      </div>
+      {!banner?.banners ? (
+        <LoaderContent />
+      ) : (
+        <Swiper
+          modules={[Autoplay]}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          onSlideChange={() => tg.HapticFeedback.impactOccurred("medium")}
+          spaceBetween={10}
+          slidesPerView={1.1}
+          className={style.boxCard}
+        >
+          {banner.banners.map((item) => (
+            <SwiperSlide
+              onClick={() =>
+                swapLink(item.id, item.only_link, item.link_for_button)
+              }
+              className={style.slide}
+              key={item.id}
+            >
+              <img className={style.img} src={`${url}${item.image}`} alt="" />
+              <div className={style.boxBanner}>
+                <h1 className={style.title}>{item.name}</h1>
+                <p className={style.descr}>{item.description}</p>
+                <div className={style.boxBtn}>
+                  <Button className={style.btn}>{item.button_text}</Button>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </div>
   );
 }

@@ -30,6 +30,7 @@ function Setting() {
   
   const { tg } = useTelegram();
 
+  //временный тогл
   const handleToogle = () => {
     mutateMessenge.mutate();
   };
@@ -61,8 +62,7 @@ function Setting() {
 
   const hanldeRef = () => {
     const link =
-      `https://t.me/share/url?url=https://t.me/dephubot`;
-    //можно после ссылки вставить &text={опциональный_текст}
+      `https://t.me/share/url?url=https://t.me/dephubot&text=Один клик — и ты в игре.%0AПереходи и забирай своё!`;
     tg.openTelegramLink(link);
   };
 

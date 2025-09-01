@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom";
 import style from "./Quest.module.scss";
 import { Button } from "../../ui/Button";
 import imgDaily from "../../assets/png/dailyBonusNav.png";
-import imgFree from '../../assets/png/freeSpins.png'
+import imgFree from "../../assets/png/freeSpins.png";
+import imgWheel from "../../assets/png/wheal.webp";
 import ArrowSvg from "../../assets/svg/ArrowSvg/ArrowSvg";
 import { TasksList } from "../../components/TasksList";
 
@@ -17,7 +18,9 @@ function Quest() {
     navigate("/daily");
   };
 
-  
+  const hanldeWheelFortuneOpen = () => {
+    navigate("/wheel");
+  };
 
   return (
     <div className={style.box}>
@@ -28,7 +31,21 @@ function Quest() {
       >
         <img src={imgDaily} className={style.bonusDaily} />
         <span className={style.span}>Уникально</span>
-        <p className={style.descr}>Ежедневный <br /> бонус</p>
+        <p className={style.descr}>
+          Ежедневный <br /> бонус
+        </p>
+        <ArrowSvg className={style.svg} />
+      </Button>
+      <Button
+        onClick={hanldeWheelFortuneOpen}
+        className={style.boxBonusWheal}
+        kind="secondary"
+      >
+        <img src={imgWheel} className={style.bonusDaily} />
+        <span className={style.span}>Доступно</span>
+        <p className={style.descr}>
+          Колесо <br /> фортуны
+        </p>
         <ArrowSvg className={style.svg} />
       </Button>
       <Button
@@ -38,7 +55,9 @@ function Quest() {
       >
         <img src={imgFree} className={style.bonusDaily} />
         <span className={style.spanFree}>Доступно</span>
-        <p className={style.descr}>Розыгрыш <br /> призов</p>
+        <p className={style.descr}>
+          Розыгрыш <br /> призов
+        </p>
         <ArrowSvg className={style.svg} />
       </Button>
       <div className={style.questBox}>
