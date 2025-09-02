@@ -16,6 +16,7 @@ import Quest from "./pages/Quest/Quest";
 import Setting from "./pages/Setting/Setting";
 import AiFunction from "./pages/AiFunction/AiFunction";
 import { BannerInfo } from "./components/Banner/BannerInfo";
+import { InfoBigGame } from "./components/BigGame/InfoBigGame";
 
 
 const Layout = lazy(() => import("./pages/Layout/Layout"));
@@ -60,6 +61,7 @@ function App() {
             <Route path={'daily'} element={<Daily />} />
             <Route path={'ai-function'} element={<AiFunction />} />
             <Route path={'banner/:id'} element={<BannerInfo />} />
+            <Route path={'big-game/:id'} element={<InfoBigGame />} />
             <Route path={'/:id'} element={<InfoPeople />} />
           </Route>
           <Route path={'*'} element={<Navigate to={'/'} />} />

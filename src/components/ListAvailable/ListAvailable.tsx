@@ -1,10 +1,10 @@
 import { useTelegram } from "../../providers/telegram/telegram";
-import { BannerType } from "../../types/CasinoType";
+import { BannerType, BigWinType } from "../../types/CasinoType";
 import { Button } from "../../ui/Button";
 import style from "./ListAvailable.module.scss";
 
 interface ListAvailableProps {
-  item: BannerType;
+  item: BannerType | BigWinType;
 }
 
 const url = import.meta.env.VITE_API_BASE_URL;

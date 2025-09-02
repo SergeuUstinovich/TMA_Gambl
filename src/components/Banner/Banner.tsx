@@ -32,7 +32,7 @@ function Banner() {
         <Swiper
           modules={[Autoplay]}
           autoplay={{
-            delay: 3000,
+            delay: 5000,
             disableOnInteraction: false,
           }}
           onSlideChange={() => tg.HapticFeedback.impactOccurred("medium")}

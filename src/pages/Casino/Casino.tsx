@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { InfoTMA } from "../../components/InfoTMA";
 import { Bonuses } from "../../components/Bonuses";
 import { PeopeOnliCasino } from "../../components/PeopeOnliCasino";
+import { BigGame } from "../../components/BigGame/BigGame";
 
 function Casino() {
   const casino = useSelector(getCasino);
@@ -21,6 +22,7 @@ function Casino() {
   return (
     <div className={`${style.casino} ${isLoaded ? style.fade : ""}`}>
       <Banner />
+      <BigGame />
       <PeopleTop />
       <OffersWeek />
       <TopCasino

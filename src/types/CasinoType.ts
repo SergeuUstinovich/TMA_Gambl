@@ -6,7 +6,17 @@ export interface CasinoType {
   top_10_casino: CasinoCardType[];
   offers_of_week: CasinoCardType[];
   banners: BannerType[];
-  // big_win: ;
+  big_win: BigWinType[];
+}
+
+export interface BigWinType {
+  chance: ChanceType;
+  casino: GameCasinoType[];
+  id: number;
+  name: string;
+  picture: {
+    image_url: string;
+  };
 }
 
 export interface BannerType {
@@ -14,7 +24,7 @@ export interface BannerType {
   image: string;
   name: string;
   chance: ChanceType;
-  casino: BannerCasinoType[];
+  casino: GameCasinoType[];
   button_text: string;
   description: string;
   picture_x2: {
@@ -24,7 +34,7 @@ export interface BannerType {
   link_for_button: string | null;
 }
 
-interface BannerCasinoType {
+interface GameCasinoType {
   casino: {
       logo_url: string;
       name: string;
