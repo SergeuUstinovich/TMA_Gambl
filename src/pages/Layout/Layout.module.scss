@@ -5,7 +5,7 @@
 
     .header {
         position: fixed;
-        top: 56px;
+        top: var(--tg-content-safe-area-inset-top, 0);
         left: 50%;
         transform: translateX(-50%);
         padding-top: 5px;
