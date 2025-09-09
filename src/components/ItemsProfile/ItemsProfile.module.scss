@@ -12,7 +12,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 7px;
-    margin-bottom: 135px;
+    margin-bottom: var(--tg-bottom-footer);
 
     .item {
       display: flex;

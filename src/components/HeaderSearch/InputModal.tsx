@@ -10,6 +10,8 @@ interface ModalProps {
   lazy?: boolean;
 }
 
+// const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
 function InputModal(props: ModalProps) {
   const {
     children,

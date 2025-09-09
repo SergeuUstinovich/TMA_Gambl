@@ -18,6 +18,7 @@ import AiFunction from "./pages/AiFunction/AiFunction";
 import { BannerInfo } from "./components/Banner/BannerInfo";
 import { InfoBigGame } from "./components/BigGame/InfoBigGame";
 
+// const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 const Layout = lazy(() => import("./pages/Layout/Layout"));
 // const Casino = lazy(() => import("./pages/Casino/Casino"));
@@ -32,7 +33,11 @@ function App() {
   const {tg} = useTelegram();
   tg.expand();
   tg.disableVerticalSwipes();
-
+  // useEffect(() => {
+  //   if(isIOS)
+  //   document.body.style.paddingTop = '95px';
+  // }, [isIOS])
+  tg.setHeaderColor("#000", "#fff");
   const location = useLocation()
   const navigate = useNavigate()
   useEffect(() => {

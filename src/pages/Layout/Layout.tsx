@@ -19,6 +19,8 @@ import { tabs } from "./navDataCasino";
 import { tasksActions } from "../../providers/StoreProvider/slice/tasksSlice";
 import { getTaskCasino } from "../../api/tasks";
 
+// const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
 function Layout() {
   const { initData } = useTelegram();
   const dispatch = useDispatch();

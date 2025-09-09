@@ -8,6 +8,8 @@ interface ModalProps {
   classNameContent?: string;
 }
 
+// const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
 function ModalRoute({
   children,
   classNameModal,

@@ -35,6 +35,7 @@ html {
   --btn-bg: #34c759;
   --toggle-active: #34c759;
   --active-footer: #11FF8D;
+  --tg-bottom-footer: 85px;
 }
 
 a {
@@ -61,7 +62,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding-top: var(--tg-content-safe-area-inset-top, 0);
+  // padding-top: 75px;
 }
 
 img {
