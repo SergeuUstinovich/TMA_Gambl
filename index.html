@@ -20,6 +20,54 @@
       fbq('init', '{your-pixel-id-goes-here}'); //ID вставить
       fbq('track', 'PageView');
     </script> -->
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return;
+          }
+        }
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym"
+      );
+
+      ym(104115728, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+      });
+    </script>
+    <!-- Yandex.Metrika counter -->
+    <!-- TELEGRAM counter -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://s3.eu-central-1.amazonaws.com/cdn.telemetree.io/telemetree-pixel.js"></script>
+    <script>
+      const telemetreeBuilder = telemetree({
+        projectId: "f47e3951-7eb2-4934-a850-4f8459c66b5d",
+        apiKey: "a7db19e2-fb4c-4d50-a29f-a549b8f30ac6",
+        isTelegramContext: true, // use false, if a website is not in Telegram Web App context
+        logLevel: "info", // set log level to debug if you need to. Default is info. (options: error, warn, info, debug)
+        trackGroup: "medium", // set group to low if you need to. Default is medium. (options: "high", "medium", "low", false)
+      });
+    </script>
+    <!-- TELEGRAM counter -->
     <title>TMA</title>
   </head>
   <body translate="no">
@@ -31,6 +79,14 @@
         src="https://www.facebook.com/tr?id=ВАШ_PIXEL_ID&ev=PageView&noscript=1"
       />
     </noscript> -->
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/104115728"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
